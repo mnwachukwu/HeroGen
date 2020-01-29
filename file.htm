@@ -1,0 +1,100 @@
+<!--
+////////////////////////////////////////////////////////////////
+//                                                            //
+// HeroGen (an ALTERNITY Character Generator)                 //
+// Copyright (c) 1999-2003 Mike Heffner. All rights reserved. //
+//                                                            //
+// ALTERNITY is a registered trademark owned by TSR, Inc.     //
+// Copyright (c) 1998 TSR, Inc. All rights reserved.          //
+//                                                            //
+////////////////////////////////////////////////////////////////
+-->
+
+<html>
+<head>
+<title>File</title>
+<script language="Javascript">
+function get_saved_heroes()
+{
+  for (var x=0; x<window.opener.files; x++)
+  {
+    var cookie = window.opener.get_cookie(window.opener.cookies[0] + '_' + x);
+	if (cookie != '')
+	{
+      var token = cookie.split('\t');
+	  document.writeln('<option' + (x == 0 ? ' selected' : '') + '>' + token[0]);
+    }
+  }
+}
+function load()
+{
+  var selectedIndex = document.forms[0].saved.selectedIndex;
+  if (selectedIndex < 0)
+  {
+    alert('There are no heroes to load!');
+	return;
+  }
+  var c = new Array(window.opener.cookies.length);
+  for (var x=0; x<window.opener.cookies.length; x++)
+  {
+    c[x] = window.opener.get_cookie(window.opener.cookies[x]);
+	var cookie = window.opener.get_cookie(window.opener.cookies[x] + '_' + selectedIndex);
+	window.opener.set_cookie(window.opener.cookies[x], cookie);
+	window.opener.set_cookie(window.opener.cookies[x] + '_' + selectedIndex, c[x]);
+  }
+  window.close();
+  window.opener.location.reload();
+}
+function remove()
+{
+  var selectedIndex = document.forms[0].saved.selectedIndex;
+  if (selectedIndex < 0)
+  {
+    alert('There are no heroes to delete!');
+	return;
+  }
+  var cookie = window.opener.get_cookie(window.opener.cookies[0] + '_' + selectedIndex);
+  var token = cookie.split('\t');
+  if (confirm('Are you sure you want to delete hero "' + token[0] + '"?'))
+  {
+    for (var x=0; x<window.opener.cookies.length; x++)
+	  document.cookie = window.opener.cookies[x] + '_' + selectedIndex + '=';
+	for (var x=selectedIndex; x<window.opener.files-1; x++)
+	  for (var y=0; y<window.opener.cookies.length; y++)
+	  {
+	    var cookie = window.opener.get_cookie(window.opener.cookies[y] + '_' + (x+1));
+		if (cookie == '')
+		  break;
+		window.opener.set_cookie(window.opener.cookies[y] + '_' + x, cookie);
+		document.cookie = window.opener.cookies[y] + '_' + (x+1) + '=';
+	  }
+	for (var x=document.forms[0].saved.options.length-1; x>=0; x--)
+	  document.forms[0].saved.options[x] = null;
+	window.location.reload();
+  }
+}
+</script>
+</head>
+<body bgcolor="white">
+<form>
+<table width="100%">
+<tr>
+<th>Saved Heroes</th>
+<tr>
+</tr>
+<td align=center><select name="saved" size=3>
+<script language="Javascript">
+get_saved_heroes()
+</script>
+</select></td>
+</tr>
+<tr>
+<td align=center><input type="button" value="Load" onClick="load()">
+                 <input type="button" value="Delete" onClick="remove()">
+				 <input type="button" value="Close" onClick="window.close()">
+</td>
+</tr>
+</table>
+</form>
+</body>
+</html>

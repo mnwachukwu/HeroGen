@@ -1,0 +1,601 @@
+<!--
+////////////////////////////////////////////////////////////////
+//                                                            //
+// HeroGen (an ALTERNITY Character Generator)                 //
+// Copyright (c) 1999-2003 Mike Heffner. All rights reserved. //
+//                                                            //
+// ALTERNITY is a registered trademark owned by TSR, Inc.     //
+// Copyright (c) 1998 TSR, Inc. All rights reserved.          //
+//                                                            //
+////////////////////////////////////////////////////////////////
+-->
+
+<html>
+<head>
+<title>README: HeroGen 3.0 (an ALTERNITY (R) Character Generator)</title>
+</head>
+<body bgcolor="white">
+<h2><a name="top">HeroGen (an A<font size="-1">LTERNITY</font> Character Generator)</a></h2>
+<h5><a href="#quick_tour">Quick Tour</a> |
+    <a href="#features">Features</a> |
+	<a href="#change_history">Change History</a>
+</h5>
+<hr>
+<h4>Welcome to <b>HeroGen</b>, the Web-based
+A<font size="-1">LTERNITY</font> character generator!</h4>
+<hr>
+<h3><a name="quick_tour">Quick Tour</a></h3>
+The <b>HeroGen</b> window is divided into four frames:
+<ol>
+<li>The upper frame is where the hero's data is input.
+<li>The middle frame is the character sheet, updated each time data is input or changed in the
+    upper frame.
+<li>The lower-left frame is the navigation frame. Clicking on a link here will navigate to a
+    location in the upper frame, bring up the <a href="#skills">Skills</a> or
+	<a href="#mutants">Mutations</a> window, bring up this file in a separate window, download
+	<b>HeroGen</b>, download the
+	<a href="#font">cool A<font size="-1">LTERNITY</font></b> font</a>, or open a window to
+	<a href="mailto:heffner@ack.org?subject=HeroGen">mail me a message</a>.
+<li>The lower-right frame contains the number of skills points purchased and the total number
+    of skill points available.
+</ol>
+<p>
+To save your character sheet to a file, click in the middle frame and select
+<b>Save Frame As...</b> from the <b>File</b> menu.
+<p>
+With the use of <a href="#cookies">cookies</a>, character sheets can be saved between browser
+sessions!
+<h5>Back to <a href="#top">top</a></h5>
+<hr>
+<h3><a name="features">Features</a></h3>
+<ul>
+<li><a href="#character_creation">Character Creation</a>
+<li><a href="#generation">Automatic Character Sheet Generation</a>
+    <ul>
+	<li>in normal font or the <a href="#font">cool A<font size="-1">LTERNITY</font></b> font</a>!
+	</ul>
+<li><a href="#cookies">Cookies</a>
+<li><a href="#save">Save up to Four Characters!</a>
+<li><a href="#abilities">Abilities</a>
+<li><a href="#skills">Skills</a>
+<li><a href="#skill_rules">Original, Upgraded, or Mikey Skill Rules</a>
+<li><a href="#profession">Profession: Special Benefits</a>
+<li><a href="#perks_flaws">Perks &amp; Flaws</a>
+<li><a href="#weapons_armor">Weapons &amp; Armor</a>
+<li><a href="#cybernetic_gear">Cybernetic Gear</a>
+<li><a href="#mutants">Mutants</a>
+<li><a href="#achievements">Achievements</a>
+<li><a href="#custom">Custom Weapons, Armor, and Cybernetic Gear</a>
+</ul>
+<h5>Back to <a href="#top">top</a></h5>
+<hr>
+<h4><a name="character_creation">Character Creation</a></h4>
+<b>HeroGen</b> allows the input of the following items:
+<ul>
+<li>Hero's Name, Player's Name, Species, Gender, Profession, Career, Attributes, Setting,
+    Gamemaster
+<li>Abilities
+<li>Skills
+<li>Perks &amp; Flaws
+<li>Weapons &amp; Armor
+<li><b>Custom</b> Weapons &amp; Armor
+<li>Personal Data
+<li>Other Game Data
+</ul>
+<h5>Back to <a href="#features">Features</a></h5>
+<hr>
+<h4><a name="generation">Automatic Character Sheet Generation</a></h4>
+Each time data in the upper frame is added or changed, the character sheet is automatically
+updated to reflect those changes!
+<p>
+Click on the <b>View</b> button near the top of the upper frame to bring up the character sheet
+in a new window for viewing, printing, saving, etc.
+<p><a name="font"></a></p>
+Display the character sheet in the cool A<font size="-1">LTERNITY</font></b>
+font by installing the fonts and checking the <b>Cool Font</b> check box just above the
+<a href="#abilities">Abilities</a> section.
+<p>
+The two font files are named <b>alternity.TTF</b> and <b>Boos1.TTF</b>.
+<br>
+They are included with the latest version of <b>HeroGen</b>.
+<br>
+To install them (<b>Windows</b>):
+<ul>
+<li>Click on the <a href="fonts.zip">Fonts</a> link in <b>HeroGen</b>
+<li>Make sure the <b>Open it</b> radio button is selected, then click on the <b>OK</b> button
+<li>Extract the files in the archive to your hard drive
+<li>Click on the <b>Start</b> button
+<li>Select <b>Settings</b>, then <b>Control Panel</b>
+<li>Double-click on the <b>Fonts</b> icon
+<li>Under the <b>File</b> menu, select <b>Install New Font...</b>
+<li>Go to the folder containing the font files in the <b>Folders</b> list box
+    <ul>
+	<li>the fonts should be listed in the <b>List of fonts</b> list box
+	</ul>
+<li>Click on the <b>Select All</b> button, then on the <b>OK</b> button
+    <ul>
+	<li>the fonts will be installed
+	</ul>
+<li>Close the <b>Fonts</b> and <b>Control Panel</b> windows
+</ul>
+<h5>Back to <a href="#features">Features</a></h5>
+<hr>
+<h4><a name="cookies">Cookies</a></h4>
+With cookies enabled, data in <b>HeroGen</b> is able to be saved between browser sessions!
+<p>
+<dl>
+<dt><b>Note</b>:
+<dd>With cookies disabled, <b>HeroGen</b> will still work... your hero will simply die along
+with your browser session.
+</dl>
+<p>
+To enable cookies:
+<ul>
+<li>Select <b>Preferences...</b> from the <b>Edit</b> menu
+<li>In the <b>Category</b> frame, click on <b>Advanced</b>
+<li>Select the <b>Accept all cookies</b> radio button
+<li>Click on the <b>OK</b> button
+</ul>
+<p>
+Four cookies are used to save the data in the character sheet:
+<ul>
+<li>info
+<li>skills
+<li>other
+<li>custom
+</ul>
+<p>
+The cookies are persistent for one year since the last time HeroGen was opened.
+<p>
+Simply opening HeroGen automatically refreshes its cookies, giving them another year of life.
+<p>
+<dl>
+<dt><b>Note</b><sup>2</sup>:
+<dd>The <b>Tab</b> character is used to delimit data in the cookies.
+<dd>If you know of a way to insert a <b>Tab</b> character into an input field and do it,
+    you will mess up the cookies.
+<dd>You've been warned!
+</dl>
+<h5>Back to <a href="#features">Features</a></h5>
+<hr>
+<h4><a name="save">Save up to Four Characters!</a></h4>
+<b>HeroGen</b> allows the user to save up to four characters:
+<ul>
+<li>the one currently being worked on... changes are stored on-the-fly
+<li>three others accessible through the <b>File</b> button in the top portion of the upper
+    frame
+</ul>
+To save a character, click on the <b>Save</b> button (just below the <b>File</b> button)
+<p>
+After a hero is saved, click on the <b>File</b> button to view the saved heroes.
+<ul>
+<li>Selecting a hero in the list box then clicking on the <b>Load</b> button will swap that
+    hero with the hero currently being worked on.
+<li>Selecting a hero in the list box then clicking on the <b>Delete</b> button will delete that
+    hero.
+</ul>
+To create a new hero, click on the <b>New</b> button.
+<ul>
+<li>The hero currently being worked on will be saved.
+<li>A blank form will be brought up in the upper frame in its place.
+<li>A character sheet for the new hero will be generated.
+</ul>
+<h5>Back to <a href="#features">Features</a></h5>
+<hr>
+<h4><a name="abilities">Abilities</a></h4>
+<b>HeroGen</b> allows each of the six ability scores to be assigned:
+<ul>
+<li>Strength
+<li>Dexterity
+<li>Constitution
+<li>Intelligence
+<li>Will
+<li>Personality
+</ul>
+<p>
+When a new species or profession is selected, the ranges of the abilities are recomputed,
+based on the minimum and maximum ranges of the species and profession currently selected.
+<h5>Back to <a href="#features">Features</a></h5>
+<hr>
+<h4><a name="skills">Skills</a></h4>
+<b>HeroGen</b> allows the selection of all of the standard skills, broad and specialty.
+<p>
+(The optional psionic skills are not <i>yet</i> implemented.)
+<p>
+Each hero starts out with the free broad skills defined by his species.
+<p>
+Checking a broad skill's check box enables its specialty skills. Up to 12 specialty skill ranks
+may be selected.
+<p>
+Unchecking a broad skill's check box wipes out all information for its associated specialty
+skills.
+<p>
+<dl>
+<dt><b>Note</b>:
+<dd>When a new species is selected, all broad and specialty skills are wiped out and replaced
+    with that species' free broad skills.
+</dl>
+<p>
+Where applicable, a short description will appear to the right of the skills. If the
+description's font is <b>bold</b>, the skill's impact has already been reflected in the
+character sheet.
+<ul>
+<li>A description at the ability level applies to all its broad and specialty skills.
+<li>A description at the broad skill level applies to all its specialty skills.
+</ul>
+<p>
+When the selection of skills is complete, the skills window should be closed.
+<h5>Back to <a href="#features">Features</a></h5>
+<hr>
+<h4><a name="skill_rules">Original, Upgraded, or Mikey Skill Rules</a></h4>
+<b>HeroGen</b> allows the user to select one of three <b>skill rules</b>.
+<p>
+<table border>
+<tr>
+<td><br></td><th>Original</th><th>Upgraded</th><th>Mikey</th>
+</tr>
+<tr>
+<th align=left valign=top>Starting Skill Points</th>
+<td>Table P5 of the <i>Player's Handbook</td>
+<td>30 plus 3 times intelligence</td>
+<td>30 plus 3 times intelligence</td>
+</tr>
+<tr>
+<th align=left valign=top>Starting Broad Skills</th>
+<td>Table P5 of the <i>Player's Handbook</td>
+<td>Six, modified by the Intelligence-based resistance modifier</td>
+<td>Six, modified by the Intelligence-based resistance modifier</td>
+</tr>
+<tr>
+<th align=left valign=top>Specialty Skill Cost</th>
+<td>Original purchase price plus current rank</td>
+<td>Original purchase price</td>
+<td>Original purchase price plus current rank</td>
+</tr>
+</table>
+<p>
+Select the desired skill rule by selecting the appropriate radio button at the top of the
+upper frame.
+<p>
+The character sheet will be updated to reflect the rules chosen.
+<h5>Back to <a href="#features">Features</a></h5>
+<hr>
+<h4><a name="profession">Profession: Special Benefits</a></h4>
+<b>HeroGen</b> allows the user to select a <b>special benefit</b> for the following
+<b>professions</b>:
+<ul>
+<li>Combat Spec
+    <ul>
+	<li>Situation Bonus
+	<li>Choose a specialty skill from the list box: that specialty skill's base situation die
+	    improves from +d0 to -d4.
+    </ul>
+<li>Diplomat
+    <ul>
+	<li>Secondary Profession
+	<li>Choose a profession from the list box: skills from that profession can be purchased at
+	    <i>list price -1</i> instead of <i>list price</i>.
+	</ul>
+<li>Free Agent
+    <ul>
+	<li>Resistance Bonus
+	<li>Choose an ability from the list box: its resistance modifier improves by one step.
+	</ul>
+</ul>
+<p>
+When the appropriate profession is selected in the upper frame, choose the special benefit for
+that profession; the character sheet will be updated to reflect the special benefit chosen.
+<p>
+The list boxes for the other professions will be automatically disabled.
+<h5>Back to <a href="#features">Features</a></h5>
+<hr>
+<h4><a name="perks_flaws">Perks &amp; Flaws</a></h4>
+<b>HeroGen</b> allows the selection of all of the standard perks and flaws.
+<p>
+The perks and flaws selected will show up in the <b>Game Data</b> section of the character
+sheet.
+<p>
+Each perk and flaw selected affects the total skill points scored.
+<p>
+Each hero is limited to three perks and three flaws.
+<p>
+The following perks and flaws cannot be selected at the same time:
+<p>
+<table border>
+<tr>
+<th>Perk</th><th>Flaw</th>
+</tr>
+<tr>
+<td>Filthy Rich</td><td>Dirt Poor</td>
+</tr>
+<tr>
+<td>Fortitude</td><td>Fragile</td>
+</tr>
+<tr>
+<td>Good Luck</td><td>Bad Luck</td>
+</tr>
+<tr>
+<td>Great Looks</td><td>Poor Looks</td>
+</tr>
+<tr>
+<td>Observant</td><td>Oblivious</td>
+</tr>
+</table>
+<p>
+For example, if the <b>Filthy Rich</b> perk is purchased, then the <b>Dirt Poor</b> flaw cannot
+also be purchased.
+<p>
+Perks in <i>italics</i> may <b>only</b> be purchased when the hero is created:
+<ul>
+<li>Alien Artifact
+<li>Faith
+<li>Filthy Rich
+<li>Good Luck
+<li>Great Looks
+<li>Heightened Ability
+<li>Psionic Awareness
+<li>Vigor
+</ul>
+<p>
+Perks not in italics may either be assigned by the gamemaster or purchased by the player as an
+<a href="#achievement_benefits">Achievement Benefit</a>.
+<h5>Back to <a href="#features">Features</a></h5>
+<hr>
+<h4><a name="weapons_armor">Weapons &amp; Armor</a></h4>
+<b>HeroGen</b> allows the selection of all of the standard weapons and armor.
+<p>
+Each hero is permanently given the <b>Unarmed</b> melee weapon.
+<br>
+(Unless the hero has no arms... wait a minute... he'd still be unarmed! :-)
+<p>
+<b>T'sa</b> heroes automatically receive natural body armor.
+<p>
+Checking the <b>Weapon Accuracy</b> check box causes a weapon's base situation die to be
+adjusted by its accuracy.
+<p>
+In addition to the standard <b>Weapon Data</b> table, the character sheet also has an <b>Armor Data</b> table.
+<h5>Back to <a href="#features">Features</a></h5>
+<hr>
+<h4><a name="cybernetic_gear">Cybernetic Gear</a></h4>
+<b>HeroGen</b> allows the selection of all of the standard cybernetic gear.
+<p>
+Gear marked with a single asterisk requires a Nanocomputer.
+<ul>
+<li>If a hero has gear requiring a Nanocomputer installed and unchecks the Nanocomputer
+    check box, <b>HeroGen</b> will prompt the user to verify this action. If the user answers
+	affirmatively, this gear will be uninstalled.
+	<br>
+	(<a href="#custom">Custom cybernetic gear</a> will remain installed...
+	 its property will be changed to not require a Nanocomputer.)
+</ul>
+<p>
+Gear marked with two asterisks can be installed at no cost in skill points.
+<p>
+<b>Mechalus</b> heroes are initially given a Good-quality Nanocomputer, a Passive Data Slot,
+and Reflex.
+<br>
+(This gear does not use up the Mechalus hero's Cyber Tolerance boxes.)
+<h5>Back to <a href="#features">Features</a></h5>
+<hr>
+<h4><a name="mutants">Mutants</a></h4>
+<b>HeroGen</b> allows the selection of mutant abilities.
+<p>
+In order to select mutant abilities, the hero's species must be set to <b>Mutant</b>.
+<p>
+When the selection of mutant abilities is complete, the mutant window should be closed.
+<p>
+For more information on mutants, check out the <b><i>Player's Handbook</i></b>.
+<h5>Back to <a href="#features">Features</a></h5>
+<hr>
+<h4><a name="achievements">Achievements</a></h4>
+<b>HeroGen</b> processes achievements the following ways:
+<ul>
+<li><a href="#achievement_points">Achievement Points</a>
+<li><a href="#last_resorts">Last Resorts</a>
+<li><a href="#achievement_benefits">Achievement Benefits</a>
+</ul>
+<p>
+<hr align=left width="50%">
+<h5><a name="achievement_points">Achievement Points</a></h5>
+Clicking on the <b>Achievement Points</b> button brings up a dialog box with three sections:
+<ol>
+<li>The upper section displays the total number of achievements points earned by the hero,
+    as well the number of points needed for the next level.
+<li>The middle section contains a text field where the player inputs the number of achievement
+    points the hero earned in the last adventure. Entering a positive number in the text field
+	and clicking on the Apply button will add the points to the hero's total and update the
+	dialog box.
+<li>The lower section contains the Reset Achievement Points button. Clicking on this button
+    will set the hero's achievement points to zero, as well as clearing any
+	<a href="#last_resorts">Last Resorts</a> and
+	<a href="#achievement_benefits">Achievement Benefits</a> purchased.
+</ol>
+<p>
+<hr align=left width="50%">
+<h5><a name="last_resorts">Last Resorts</a></h5>
+Clicking on the <b>Last Resorts</b> button brings up a dialog box where the player can input
+the number of last resorts used in the last adventure and/or the number of last resorts the
+player wishes to purchase.
+<p>
+<hr align=left width="50%">
+<h5><a name="achievement_benefits">Achievement Benefits</a></h5>
+Clicking on the <b>Achievement Benefits</b> button brings up a dialog box where the player can
+purchase any achievement benefits allowed at the hero's current level.
+<p>
+<hr align=left width="50%">
+<h5>Back to <a href="#features">Features</a></h5>
+<hr>
+<h4><a name="custom">Custom Weapons, Armor, &amp; Cybernetic Gear</a></h4>
+<b>HeroGen</b> allows the input and saving of custom weapons, armor, and cybernetic gear
+   through <a href="#cookies">cookies</a>.
+<p>
+To open the <b>Custom</b> dialog box, click on the <b>Weapons</b>, <b>Armor</b>, or
+<b>Cyber Gear</b> link in the lower-left frame, then on the <b>Custom</b> button.
+<p>
+The dialog box contains fields for entering data and a row of buttons. To create a new custom
+item, click on the <b>Insert</b> button.
+<p>
+Changes are applied as soon as the value in a field changes and the field loses focus. To
+cancel the changes to the record since it was navigated to, click on the <b>Revert</b> button.
+<p>
+To delete a custom item, click on the <b>Delete</b> button.
+<p>
+<b>Always</b> click on the <b>Close</b> button to ensure the changes are reflected on the
+character sheet.
+<p>
+The status bar will indicate which custom item is being edited.
+<h5>Back to <a href="#features">Features</a></h5>
+<hr>
+<h3><a name="change_history">Change History</h3>
+<h4>January 24, 2003</h4>
+<ul>
+<li>Version 3.0
+	<ul>
+	<li><b>HeroGen</b> is now fully compatible with <b>Internet Explorer</b>
+		<ul>
+		<li>tested with version 6.0 on Windows 98, Windows NT, Windows 2000, and Windows XP
+		</ul>
+	<li>Added the <b>Weapon Accuracy</b> check box
+		<ul>
+		<li>when this box is checked, the optional rule for weapon accuracy will be in effect
+		<li>a weapon's base situation die will be adjusted by its accuracy
+		</ul>
+	<li>Added the <b>View</b> button to bring up the character sheet in a new window
+		<ul>
+		<li>for viewing, printing, saving, and whatever else you can think of :-)
+		</ul>
+	<li>The character sheet now has an <b>Armor Data</b> table
+		<ul>
+		<li>similar to the standard <b>Weapon Data</b> table
+		</ul>
+	<li>Prevented the <b>Armor Operation</b> broad skill and its specialty skills from automatically modifying:
+		<ul>
+		<li>the Action Check Score
+		<li>the dexterity resistance modifier
+		</ul>
+	</ul>
+</ul>
+<h4>September 21, 2000</h4>
+<ul>
+<li>Version 2.2.1
+    <ul>
+	<li>Better formatted the <b>Achievement Track</b> section
+	<li>Changed the font of the <b>Willpower</b> perk from italic to normal
+		<ul>
+		<li>meaning it can be purchased at any time, not only at hero creation
+		<li>(its functionality was working; the font was just incorrect)
+		</ul>
+	</ul>
+</ul>
+<h4>August 25, 2000</h4>
+<ul>
+<li>Version 2.2
+    <ul>
+	<li>Added in strength and dexterity resistance modifiers for
+	    the deflection harness (+2) and the displacer softsuit (+3)
+	<li>Display how many <a href="#last_resorts">last resort points</a>
+	    have been purchased in the Last Resorts dialog box
+	<li>Added quality indicators for <a href="#cybernetic_gear">cybernetic gear</a>
+	<li>Display <a href="#achievement_benefits">achievement benefits</a> on the character
+	    sheet
+	<li>Added the ability for a hero with an <b>Entertainment</b> specialty skill to enhance
+	    a broad skill
+	<li>Included the version number in the character sheet
+	<li>Fixed the increased effect the <b>Technical knowledge</b> specialty skill has:
+	    <ul>
+		<li>it no longer modifies itself
+		<li>it now modifies the <b>Technical Science</b> broad skill
+		</ul>
+	<li>Fixed a typo in the <a href="#mutants">Mutants</a> window
+	<li>Added a column in the <b>Attack Forms</b> table for the weapon's base
+	    situation die altered by its range modifier
+	</ul>
+</ul>
+<h4>July 30, 1999</h4>
+<ul>
+<li>Version 2.1
+    <ul>
+	<li>Added <a href="#achievements">Achievements</a>
+	<li>Added the <a href="#save">New</a> button to quickly create a new character
+	</ul>
+</ul>
+<h4>June 23, 1999</h4>
+<ul>
+<li>Version 2.0
+    <ul>
+	<li>Separated the skills out into their own window
+	    <ul>
+		<li>Each form element uses a little bit of the system and user resources
+		<li>With so many broad and specialty skills, <b>HeroGen</b> was using a substantial
+		    percentage of the available resources
+		<li>Now each ability's skills appear separately, greatly reducing the amount of
+		    system and user resources used by <b>HeroGen</b>
+		</ul>
+	<li>Added the ability for a hero with an <b>Entertainment</b> specialty skill to enhance
+	    another specialty skill
+	<li>Added <a href="#mutants">Mutants</a>
+	<li>Added more specialty skills under <b>Vehicle Operation</b> to allow for the
+	    specialization in specific types of the same class of vehicle
+	<li>Added the
+	    <a href="#font">cool A<font size="-1">LTERNITY</font></b> font</a>
+		for display in the character sheet
+	</ul>
+</ul>
+<h4>April 26, 1999</h4>
+<ul>
+<li>Version 1.1
+    <ul>
+	<li>All <b>.html</b> files renamed to <b>.htm</b> files
+	<li>Added <a href="#cybernetic_gear">Cybernetic Gear</a>
+	<li>Added <a href="#custom">Custom Cybernetic Gear</a>
+	<li>Added applicable descriptions for the <a href="#skills">specialty skills</a>
+	</ul>
+</ul>
+<h4>April 15, 1999</h4>
+<ul>
+<li>Version 1.0.2
+    <ul>
+	<li>Implemented the <a href="#skill_rules">Mikey Skill Rules</a>
+	</ul>
+</ul>
+<h4>April 13, 1999</h4>
+<ul>
+<li>Version 1.0.1
+    <ul>
+	<li>Fixed the <b>Vigor</b> perk so that each of its benefits can be purchased separately
+	</ul>
+</ul>
+<h4>April 9, 1999</h4>
+<ul>
+<li>Version 1.0
+</ul>
+<h5>Back to <a href="#top">top</a></h5>
+<hr>
+<p>
+HeroGen has been tested using:
+<ul>
+<li>Netscape Navigator 4.5 and Netscape Navigator 4.7 under Microsoft Windows 98
+<li>Netscape Navigator 4.08 and Netscape Navigator 4.7 under Microsoft Windows NT
+<li>Netscape Navigator 4.8 under Microsoft Windows 2000
+<li>Netscape Navigator 4.8 under Microsoft Windows XP
+<li>Microsoft Internet Explorer 6.0 under Microsoft Windows 98
+<li>Microsoft Internet Explorer 6.0 under Microsoft Windows 2000
+<li>Microsoft Internet Explorer 6.0 under Microsoft Windows XP
+</ul>
+<hr>
+<address>
+HeroGen (an A<font size="-1">LTERNITY</font> Character Generator)
+Copyright &copy; 1999-2003 Mike Heffner. All rights reserved.
+<p>
+A<font size="-1">LTERNITY</font> is a registered trademark owned by TSR, Inc.
+Copyright &copy; 1998 TSR, Inc. All rights reserved.
+<p>
+Netscape and Netscape Navigator are registered trademarks of
+Netscape Communications Corporation in the United States and other countries.
+<p>
+Microsoft, Windows, Windows NT, and Windows XP are either registered trademarks or
+trademarks of Microsoft Corporation in the U.S.A. and/or other regions and/or
+countries.
+</address>
+</body>
+</html>

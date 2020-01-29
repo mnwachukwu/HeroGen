@@ -1,0 +1,98 @@
+<!--
+////////////////////////////////////////////////////////////////
+//                                                            //
+// HeroGen (an ALTERNITY Character Generator)                 //
+// Copyright (c) 1999-2003 Mike Heffner. All rights reserved. //
+//                                                            //
+// ALTERNITY is a registered trademark owned by TSR, Inc.     //
+// Copyright (c) 1998 TSR, Inc. All rights reserved.          //
+//                                                            //
+////////////////////////////////////////////////////////////////
+-->
+
+<html>
+<head>
+<title>Custom Armor</title>
+<script language="Javascript">
+selections = '|1|2|3|7|9|'
+type = 'armor'
+</script>
+<script src="custom.js">
+</script>
+</head>
+<body bgcolor="white" onLoad="get_custom_items(); set_focus()">
+<h2>Custom Armor</h2>
+<form>
+<table width="100%">
+<tr>
+<th align=left>Armor Name</th>
+<td><input type="text" size=23 onChange="update_custom_item(0)"></td>
+<td width=50><br></td>
+<th align=left>Skill</th>
+<td><select name="s_1" onChange="update_custom_item(1)">
+    <option value="-" selected>-
+	<option value="Armor Op">Armor Op
+	<option value="combat">combat
+	<option value="powered">powered
+	</select></td>
+</tr>
+<tr>
+<th align=left>Action Penalty</th>
+<td><select name="s_2" onChange="update_custom_item(2)">
+    <option value="0" selected>0
+    <option value="+1">+1
+    <option value="+2">+2
+    <option value="+3">+3
+    <option value="+4">+4
+    <option value="+5">+5
+	</select></td>
+<td><br></td>
+<th align=left>Type</th>
+<td><select name="s_3" onChange="update_custom_item(3)">
+    <option value="Ordinary" selected>Ordinary
+    <option value="Good">Good
+    <option value="Amazing">Amazing
+	</select></td>
+</tr>
+<tr>
+<th align=left>LI / HI / En</th>
+<td><input type="text" size=6 onChange="update_custom_item(4)"> /
+    <input type="text" size=6 onChange="update_custom_item(5)"> /
+	<input type="text" size=6 onChange="update_custom_item(6)"></td>
+<td><br></td>
+<th align=left>Hide</th>
+<td><select name="s_7" onChange="update_custom_item(7)">
+    <option value="-" selected>-
+    <option value="+1">+1
+    <option value="+2">+2
+    <option value="+3">+3
+    <option value="+4">+4
+	</select></td>
+</tr>
+<tr>
+<th align=left>Mass</th>
+<td><input type="text" size=23 onChange="update_custom_item(8)"></td>
+<td><br></td>
+<th align=left>Avail</th>
+<td><select name="s_9" onChange="update_custom_item(9)">
+    <option value="Any" selected>Any
+	<option value="Common">Common
+	<option value="Controlled">Controlled
+	<option value="Military">Military
+	<option value="Restricted">Restricted
+	</select></td>
+</tr>
+<tr>
+<th align=left>Cost</th>
+<td><input type="text" size=23 onChange="update_custom_item(10)"></td>
+<td><br></td>
+<td><br></td>
+<td><br></td>
+</tr>
+</table>
+<script language="Javascript">
+write_buttons()
+</script>
+</form>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!--
+////////////////////////////////////////////////////////////////
+//                                                            //
+// HeroGen (an ALTERNITY Character Generator)                 //
+// Copyright (c) 1999-2003 Mike Heffner. All rights reserved. //
+//                                                            //
+// ALTERNITY is a registered trademark owned by TSR, Inc.     //
+// Copyright (c) 1998 TSR, Inc. All rights reserved.          //
+//                                                            //
+////////////////////////////////////////////////////////////////
+-->
+
+<html>
+<head>
+<title>Custom Cyber Gear</title>
+<script language="Javascript">
+selections = '|2|3|7|'
+type = 'cyber gear'
+function check_size(old_index)
+{
+  var f = window.opener.document.forms[0];
+  var size = 0;
+  for (var x=0; x<window.opener.cyber.length; x++)
+    if (eval('f.c_' + x + '.checked'))
+	  size += window.opener.cyber[x][2];
+  var cookie = window.opener.get_cookie('custom');
+  var token = cookie.split('\t');
+  var x = 1;
+  while (x < token.length-1)
+  {
+    if (token[x] == 'c')
+	  size += parseInt(token[x+3]=='-'?0:token[x+3]);
+	x += window.opener.get_length(token[x]);
+  }
+  size -= old_index;
+  size += document.forms[0].s_2.selectedIndex;
+  var cyber_tolerance = window.opener.get_cyber_tolerance(f);
+  if (size > cyber_tolerance)
+  {
+    alert('You do not have enough cyber tolerance boxes available to install this gear!');
+	document.forms[0].s_2.selectedIndex = old_index;
+  }
+  else
+    update_custom_item(2);
+}
+function check_nanocomputer(old_index)
+{
+  if (document.forms[0].s_7.selectedIndex == 1 &&
+      !window.opener.document.forms[0].c_10.checked)
+  {
+    alert('You must first install a nanocomputer before using this gear!');
+	document.forms[0].s_7.selectedIndex = old_index;
+  }
+  else
+    update_custom_item(7);
+}
+</script>
+<script src="custom.js">
+</script>
+</head>
+<body bgcolor="white" onLoad="get_custom_items(); set_focus()">
+<h2>Custom Cyber Gear</h2>
+<form>
+<table width="100%">
+<tr>
+<th align=left>Cyber Gear</th>
+<td><input type="text" size=23 onChange="update_custom_item(0)"></td>
+</tr>
+<tr>
+<th align=left>Mass</th>
+<td><input type="text" size=3 onChange="update_custom_item(1)"></td>
+</tr>
+<tr>
+<th align=left>Size</th>
+<td><select name="s_2" onFocus="old_index=this.selectedIndex" onChange="check_size(old_index); old_index=this.selectedIndex">
+    <option value="-" selected>-
+	<option value="1">1
+	<option value="2">2
+	<option value="3">3
+	<option value="4">4
+	</select></td>
+</tr>
+<tr>
+<th align=left>Quality</th>
+<td><select name="s_3" onChange="update_custom_item(3)">
+    <option value="Ordinary" selected>Ordinary
+	<option value="Good">Good
+	<option value="Amazing">Amazing
+	</select></td>
+</tr>
+</table>
+<table width="100%">
+<tr>
+<th>Cost Per Quality</th>
+</tr>
+<tr>
+<td align=center>O: <input type=text size=5 onChange="update_custom_item(4)">
+                 G: <input type=text size=5 onChange="update_custom_item(5)">
+				 A: <input type=text size=5 onChange="update_custom_item(6)">
+</td>
+</tr>
+<tr>
+<th>Other</th>
+</tr>
+<tr>
+<td align=center><select name="s_7" onFocus="old_index=this.selectedIndex" onChange="check_nanocomputer(old_index); old_index=this.selectedIndex">
+                 <option value="" selected>
+				 <option value="Nanocomputer required to use this device">Nanocomputer required to use this device
+				 <option value="Can be installed at no cost in skill points">Can be installed at no cost in skill points
+				 </select></td>
+</tr>
+</table>
+<script language="Javascript">
+write_buttons()
+</script>
+</form>
+</body>
+</html>

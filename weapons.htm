@@ -1,0 +1,139 @@
+<!--
+////////////////////////////////////////////////////////////////
+//                                                            //
+// HeroGen (an ALTERNITY Character Generator)                 //
+// Copyright (c) 1999-2003 Mike Heffner. All rights reserved. //
+//                                                            //
+// ALTERNITY is a registered trademark owned by TSR, Inc.     //
+// Copyright (c) 1998 TSR, Inc. All rights reserved.          //
+//                                                            //
+////////////////////////////////////////////////////////////////
+-->
+
+<html>
+<head>
+<title>Custom Weapons</title>
+<script language="Javascript">
+selections = '|1|2|3|5|7|10|12|'
+type = 'weapon'
+</script>
+<script src="custom.js">
+</script>
+</head>
+<body bgcolor="white" onLoad="get_custom_items(); set_focus()">
+<h2>Custom Weapons</h2>
+<form>
+<table width="100%">
+<tr>
+<th align=left>Weapon Name</th>
+<td><input type="text" onChange="update_custom_item(0)"></td>
+<td width=50><br></td>
+<th align=left>Skill</th>
+<td><select name="s_1" onChange="update_custom_item(1)">
+    <option value="">
+    <option value="Athl-throw">Athl-throw
+    <option value="Heavy-direct">Heavy-direct
+    <option value="Heavy-indirect">Heavy-indirect
+    <option value="Melee-blade">Melee-blade
+    <option value="Melee-bludgeon">Melee-bludgeon
+    <option value="Melee-powered">Melee-powered
+    <option value="Unarmed-brawl">Unarmed-brawl
+    <option value="Unarmed-power">Unarmed-power
+    <option value="Mod-pistol">Mod-pistol
+    <option value="Mod-rifle">Mod-rifle
+    <option value="Mod-SMG">Mod-SMG
+    <option value="Prim-bow">Prim-bow
+    <option value="Prim-crossbow">Prim-crossbow
+    <option value="Prim-flintlock">Prim-flintlock
+    <option value="Prim-sling">Prim-sling
+	</select></td>
+</tr>
+<tr>
+<th align=left>Accuracy</th>
+<td><select name="s_2" onChange="update_custom_item(2)">
+    <option value="-2" selected>-2
+	<option value="-1">-1
+	<option value= "0">0
+	<option value="-1">+1
+	<option value="+2">+2
+	</select></td>
+<td><br></td>
+<th align=left>Mode</th>
+<td><select name="s_3" onChange="update_custom_item(3)">
+    <option value="" selected>
+    <option value="F">F
+    <option value="F/B/A">F/B/A
+    <option value="B/A">B/A
+    <option value="A">A
+	</select></td>
+<td><br></td>
+</tr>
+<tr>
+<th align=left>Range</th>
+<td><input type="text" onChange="update_custom_item(4)"></td>
+<td><br></td>
+<th align=left>Type</th>
+<td><select name="s_5" onChange="update_custom_item(5)">
+    <option value="LI/O" selected>LI/O
+    <option value="HI/O">HI/O
+    <option value="En/O">En/O
+    <option value="LI/G">LI/G
+    <option value="HI/G">HI/G
+    <option value="En/G">En/G
+    <option value="LI/A">LI/A
+    <option value="HI/A">HI/A
+    <option value="En/A">En/A
+	</select></td>
+</tr>
+<tr>
+<th align=left>Damage (O/G/A)</th>
+<td><input type="text" onChange="update_custom_item(6)"></td>
+<td><br></td>
+<th align=left>Actions</th>
+<td><select name="s_7" onChange="update_custom_item(7)">
+    <option value="1" selected>1
+	<option value="2">2
+	<option value="3">3
+	<option value="4">4
+	</select></td>
+</tr>
+<tr>
+<th align=left>Clip Size</th>
+<td><input type="text" onChange="update_custom_item(8)"></td>
+<td><br></td>
+<th align=left>Clip Cost</th>
+<td><input type="text" onChange="update_custom_item(9)"></td>
+</tr>
+<tr>
+<th align=left>Hide</th>
+<td><select name="s_10" onChange="update_custom_item(10)">
+    <option value="-" selected>-
+	<option value="+1">+1
+	<option value="+2">+2
+	<option value="+3">+3
+	<option value="+4">+4
+	</select></td>
+<td><br></td>
+<th align=left>Mass</th>
+<td><input type="text" onChange="update_custom_item(11)"></td>
+</tr>
+<tr>
+<th align=left>Avail</th>
+<td><select name="s_12" onChange="update_custom_item(12)">
+    <option value="Any" selected>Any
+	<option value="Common">Common
+	<option value="Controlled">Controlled
+	<option value="Military">Military
+	<option value="Restricted">Restricted
+	</select></td>
+<td><br></td>
+<th align=left>Cost</th>
+<td><input type="text" onChange="update_custom_item(13)"></td>
+</tr>
+</table>
+<script language="Javascript">
+write_buttons()
+</script>
+</form>
+</body>
+</html>

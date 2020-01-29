@@ -1,0 +1,88 @@
+<!--
+////////////////////////////////////////////////////////////////
+//                                                            //
+// HeroGen (an ALTERNITY Character Generator)                 //
+// Copyright (c) 1999-2003 Mike Heffner. All rights reserved. //
+//                                                            //
+// ALTERNITY is a registered trademark owned by TSR, Inc.     //
+// Copyright (c) 1998 TSR, Inc. All rights reserved.          //
+//                                                            //
+////////////////////////////////////////////////////////////////
+-->
+
+<html>
+<head>
+<title>Last Resorts</title>
+<script language="Javascript">
+o = window.opener;
+function write_window()
+{
+  var token = o.get_cookie('info').split('\t');
+  document.writeln('<i>Total Last Resorts purchased: <b>' + token[50] + '</b></i>');
+  document.writeln('<p>');
+  var used = parseInt(token[51]);
+  var left = o.last_resorts - used;
+  if (left > 0)
+  {
+    document.writeln('<table width="100%">');
+    document.writeln('<tr>');
+    document.writeln('<th align=left>How many last resort points did you use last adventure?</th>');
+	document.write('<td><select name="use">');
+	for (var x=0; x<=left; x++)
+	  document.write('<option>' + x);
+	document.writeln('</select></td>');
+    document.writeln('</tr>');
+    document.writeln('</table>');
+  }
+  if (used > 0)
+  {
+    document.writeln('<table width="100%">');
+    document.writeln('<tr>');
+    document.writeln('<th align=left>How many last resort points do you wish to purchase?</th>');
+	document.write('<td><select name="buy">');
+	for (var x=0; x<=used; x++)
+	  document.write('<option>' + x);
+	document.writeln('</select></td>');
+    document.writeln('</tr>');
+    document.writeln('</table>');
+  }
+}
+function apply_points()
+{
+  var token = o.get_cookie('info').split('\t');
+  var used = parseInt(token[51]);
+  var left = o.last_resorts - used;
+  if (left > 0)
+    token[51] = parseInt(token[51]) + document.forms[0].use.selectedIndex;
+  if (used > 0)
+  {
+    token[50] = parseInt(token[50]) + document.forms[0].buy.selectedIndex;
+    token[51] = parseInt(token[51]) - document.forms[0].buy.selectedIndex;
+  }
+  var cookie = '';
+  for (x=0; x<token.length; x++)
+    cookie += '\t' + token[x];
+  o.set_cookie('info', cookie.substring(1));
+  o.chargen();
+  window.location.reload();
+}
+function initialize() {
+	document.forms[0].elements[0].focus()
+}
+</script>
+</head>
+<body bgcolor="white" onLoad="initialize()">
+<h2>Last Resorts</h2>
+<form>
+<script language="Javascript">
+write_window()
+</script>
+<p>
+<table width="100%">
+<tr>
+<td align=center><input type="button" value="Apply" onClick="apply_points()"></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

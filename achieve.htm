@@ -1,0 +1,137 @@
+<!--
+////////////////////////////////////////////////////////////////
+//                                                            //
+// HeroGen (an ALTERNITY Character Generator)                 //
+// Copyright (c) 1999-2003 Mike Heffner. All rights reserved. //
+//                                                            //
+// ALTERNITY is a registered trademark owned by TSR, Inc.     //
+// Copyright (c) 1998 TSR, Inc. All rights reserved.          //
+//                                                            //
+////////////////////////////////////////////////////////////////
+-->
+
+<html>
+<head>
+<title>Achievement Points</title>
+<script language="Javascript">
+o = window.opener;
+f = o.parent.frames[0].document.forms[0];
+function write_current_level()
+{
+  var token = o.get_cookie('info').split('\t');
+  var a_points = parseInt(token[49]);
+  var level = o.get_level(a_points);
+  var leftover = o.get_leftover(a_points);
+  var points_needed = 0;
+  for (x=1; x<=level; x++)
+    points_needed += 5+x;
+  points_needed = points_needed - a_points;
+  document.writeln('<table>');
+  document.writeln('<tr>');
+  document.writeln('<td><i>Current Level:</i></td>');
+  document.writeln('<td><i>' + level + ' (+ ' + leftover + ' box' + (leftover==1?'':'es') + ')</i></td>');
+  document.writeln('</tr>');
+  document.writeln('<tr>');
+  document.writeln('<td><i>Points Needed for Next Level:</i></td>');
+  document.writeln('<td><i>' + points_needed + '</i></td>');
+  document.writeln('</tr>');
+  document.writeln('</table>');
+}
+function verify_points()
+{
+  var value = document.forms[0].elements[0].value;
+  if (isNaN(value) || value < 1)
+  {
+    alert('Please enter a positive number!');
+	document.forms[0].elements[0].focus();
+  }
+  else
+  {
+	var token = o.get_cookie('info').split('\t');
+	token[49] = parseInt(token[49]) + parseInt(value);
+	var cookie = '';
+	for (var x=0; x<token.length; x++)
+	  cookie += '\t' + token[x];
+	o.set_cookie('info', cookie.substring(1));
+	document.forms[0].elements[0].value = '';
+	o.chargen();
+	window.location.reload();
+  }
+}
+function reset_points()
+{
+  if (confirm('Are you sure you want to reset your achievement points?'))
+  {
+	var token = o.get_cookie('info').split('\t');
+	token[49] = '0';
+	token[50] = '0';
+	token[51] = '0';
+	var cookie = '';
+	for (var x=0; x<token.length; x++)
+	  cookie += '\t' + token[x];
+	o.set_cookie('info', cookie.substring(1));
+	for (x=0; x<o.achievement_benefit.length; x++)
+	{
+	  var cookie = o.get_cookie('other');
+	  var index = cookie.indexOf('\tb_' + x + '\t');
+	  if (index > -1)
+	  {
+	    if (x >= 32 && x <= 45)
+		{
+		  eval('f.p_' + o.new_perk[x] + '.checked = false');
+		  o.toggle_perks_flaws('p_' + o.new_perk[x]);
+		}
+		else if (x >= 46 && x <= 65)
+		{
+		  eval('f.f_' + (x-46) + '.checked = true');
+		  var token = o.flaw[x-46][1].split('/');
+		  if (token.length > 1)
+		  {
+		    var index2 = cookie.indexOf('\t', index+1) + 1;
+			var index3 = cookie.indexOf('\t', index2);
+			var value = parseInt(cookie.substring(index2, index3));
+			for (var t=0; t<token.length; t++)
+			  eval('f.f_' + (x-46) + '_r[t].checked = ' + (token[t] == value/2));
+		  }
+		  o.toggle_perks_flaws('f_' + (x-46));
+		}
+	    o.remove_benefit_from_cookie(cookie, index);
+	  }
+	}
+	o.chargen();
+	window.location.reload();
+  }
+}
+</script>
+</head>
+<body bgcolor="white" onLoad="document.forms[0].points.focus()">
+<h2>Achievement Points</h2>
+<script language="Javascript">
+write_current_level()
+</script>
+<hr>
+<form>
+<table width="100%">
+<tr>
+<th align=left>How many achievement points did you earn last adventure?</th>
+<td><input type="text" name="points" size=2></td>
+</tr>
+</table>
+<table width="100%">
+<tr>
+<td align=center>
+<input type="button" value="Apply" onClick="verify_points()">
+</td>
+</tr>
+</table>
+<hr>
+<table width="100%">
+<tr>
+<td align=center>
+<input type="button" value="Reset Achievement Points" onClick="reset_points()">
+</td>
+</tr>
+</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!--
+////////////////////////////////////////////////////////////////
+//                                                            //
+// HeroGen (an ALTERNITY Character Generator)                 //
+// Copyright (c) 1999-2003 Mike Heffner. All rights reserved. //
+//                                                            //
+// ALTERNITY is a registered trademark owned by TSR, Inc.     //
+// Copyright (c) 1998 TSR, Inc. All rights reserved.          //
+//                                                            //
+////////////////////////////////////////////////////////////////
+-->
+
+<html>
+<head>
+<script src="form.js">
+</script>
+<script language="Javascript">
+function check_for_mutant()
+{
+  var f = parent.frames[0].document.forms[0];
+  if (get_species(f) == 'Mutant')
+	window.open('mutant.htm', 'mutant', 'menubar,resizable,status');
+  else
+    alert('You must be a mutant to view mutations!');
+}
+</script>
+</head>
+<body bgcolor="white">
+<b>
+<font size="-2">
+<a href="form.htm#top"           target="form">Top</a> |
+<a href="form.htm#abilities"     target="form">Abilities</a> |
+<a href="javascript:void(0)" onClick="window.open('skills.htm', 'skills', 'resizable,status')" onMouseOver="window.status='Skills'; return true" onMouseOut="window.status=''; return true">Skills</a> |
+<a href="form.htm#perks"         target="form">Perks</a> &amp;
+<a href="form.htm#flaws"         target="form">Flaws</a> |
+<a href="form.htm#weapons"       target="form">Weapons</a> &amp;
+<a href="form.htm#armor"         target="form">Armor</a> |
+<a href="form.htm#personal_data" target="form">Personal Data</a> |
+<a href="form.htm#other"         target="form">Other</a> |
+<a href="form.htm#cyber"         target="form">Cyber Gear</a> |
+<a href="javascript:void(0)" onClick="check_for_mutant()" onMouseOver="window.status='Mutations'; return true" onMouseOut="window.status=''; return true">Mutations</a>
+<br>
+<a href="readme.htm"             target="_blank">Read Me</a> |
+<a href="herogen.zip">Download</a> |
+<a href="fonts.zip">Fonts</a> |
+<a href="mailto:heffner@ack.org?subject=HeroGen">Feedback</a>
+</font>
+</b>
+</body>
+</html>

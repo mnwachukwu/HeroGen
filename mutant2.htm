@@ -1,0 +1,121 @@
+<!--
+////////////////////////////////////////////////////////////////
+//                                                            //
+// HeroGen (an ALTERNITY Character Generator)                 //
+// Copyright (c) 1999-2003 Mike Heffner. All rights reserved. //
+//                                                            //
+// ALTERNITY is a registered trademark owned by TSR, Inc.     //
+// Copyright (c) 1998 TSR, Inc. All rights reserved.          //
+//                                                            //
+////////////////////////////////////////////////////////////////
+-->
+
+<html>
+<body bgcolor="white">
+<form>
+<h4>Mutation Drawbacks</h4>
+<table border>
+<tr>
+<th width=50>d8</th>
+<th align=left>Slight</th><th align=left>Moderate</th><th align=left>Extreme</th>
+</tr>
+<tr>
+<td align=center>1</td>
+<td>Environmental Sensitivity, slight:<br>
+    <input type="checkbox" name="m_64" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Hot Climate<br>
+	<input type="checkbox" name="m_65" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Cold Climate<br>
+	<input type="checkbox" name="m_66" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Arid Climate<br>
+	<input type="checkbox" name="m_67" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Light Gravity<br>
+	<input type="checkbox" name="m_68" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">High Gravity<br>
+	<input type="checkbox" name="m_69" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Water</td>
+<td>Environmental Sensitivity, moderate:<br>
+    <input type="checkbox" name="m_77" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Hot Climate<br>
+	<input type="checkbox" name="m_78" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Cold Climate<br>
+	<input type="checkbox" name="m_79" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Arid Climate<br>
+	<input type="checkbox" name="m_80" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Light Gravity<br>
+	<input type="checkbox" name="m_81" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">High Gravity<br>
+	<input type="checkbox" name="m_82" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Water</td>
+<td><input type="checkbox" name="m_90" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Deadly Immunity</td>
+</tr>
+<tr>
+<td align=center>2</td>
+<td><input type="checkbox" name="m_70" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Light Sensitivity</td>
+<td><input type="checkbox" name="m_83" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Inefficient Metabolism</td>
+<td>Environmental Sensitivity, extreme:<br>
+    <input type="checkbox" name="m_91" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Hot Climate<br>
+	<input type="checkbox" name="m_92" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Cold Climate<br>
+	<input type="checkbox" name="m_93" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Arid Climate<br>
+	<input type="checkbox" name="m_94" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Light Gravity<br>
+	<input type="checkbox" name="m_95" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">High Gravity<br>
+	<input type="checkbox" name="m_96" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Water</td>
+</tr>
+<tr>
+<td align=center>3</td>
+<td><input type="checkbox" name="m_71" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Reduced Ability Score, slight:<br>
+    <select name="m_71_s" onChange="if (parent.save_selection(this.name)) parent.window.opener.chargen()">
+	<option>STR<option>DEX<option>CON<option>INT<option>WIL<option>PER</select></td>
+<td><input type="checkbox" name="m_84" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Minor Physical Change</td>
+<td><input type="checkbox" name="m_97" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Highly Susceptible to Damage:<br>
+    <input type="radio" name="m_97_0_1" value="0" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()" checked>LI
+	<input type="radio" name="m_97_0_1" value="1" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()">HI
+	<input type="radio" name="m_97_0_1" value="2" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()">En
+</td>
+</tr>
+<tr>
+<td align=center>4</td>
+<td><input type="checkbox" name="m_72" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Sound Sensitivity</td>
+<td><input type="checkbox" name="m_85" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Reduced Ability Score, moderate:<br>
+    <select name="m_85_s" onChange="if (parent.save_selection(this.name)) parent.window.opener.chargen()">
+	<option>STR<option>DEX<option>CON<option>INT<option>WIL<option>PER</select></td>
+<td><input type="checkbox" name="m_98" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Major Physical Change</td>
+</tr>
+<tr>
+<td align=center>5</td>
+<td><input type="checkbox" name="m_73" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Temporary Weakness, slight</td>
+<td><input type="checkbox" name="m_86" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Slow Reflexes</td>
+<td><input type="checkbox" name="m_99" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Reduced Ability Score, extreme:<br>
+    <select name="m_99_s" onChange="if (parent.save_selection(this.name)) parent.window.opener.chargen()">
+	<option>STR<option>DEX<option>CON<option>INT<option>WIL<option>PER</select></td>
+</tr>
+<tr>
+<td align=center>6</td>
+<td><input type="checkbox" name="m_74" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Thermal Intolerance</td>
+<td><input type="checkbox" name="m_87" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Susceptible to Damage:
+    <table>
+	<tr>
+	<td><input type="radio" name="m_87_0_1" value="0" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()" checked>LI</td>
+	<td><input type="radio" name="m_87_0_1" value="1" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()">HI</td>
+	<td><input type="radio" name="m_87_0_1" value="2" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()">En</td>
+	</tr>
+	<tr>
+	<td><input type="radio" name="m_87_0_1" value="3" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()">LI &amp; HI</td>
+	<td><input type="radio" name="m_87_0_1" value="4" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()">LI &amp; En</td>
+	<td><input type="radio" name="m_87_0_1" value="5" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()">HI &amp; En</td>
+	</tr>
+	<tr>
+	<td><input type="radio" name="m_87_0_1" value="6" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()">LI (2)</td>
+	<td><input type="radio" name="m_87_0_1" value="7" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()">HI (2)</td>
+	<td><input type="radio" name="m_87_0_1" value="8" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()">En (2)</td>
+	</tr>
+	</table>
+</td>
+<td><input type="checkbox" name="m_100" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Temporary Weakness, extreme</td>
+</tr>
+<tr>
+<td align=center>7</td>
+<td><input type="checkbox" name="m_75" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Toxin Intolerance</td>
+<td><input type="checkbox" name="m_88" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Temporary Weakness, moderate</td>
+<td><input type="checkbox" name="m_101" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Weak Metabolism</td>
+</tr>
+<tr>
+<td align=center>8</td>
+<td><input type="checkbox" name="m_76" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Weak Immunity</td>
+<td><input type="checkbox" name="m_89" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Wild Immunity</td>
+<td><input type="checkbox" name="m_102" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Wild Mutation:<br>
+    <select name="m_102_s" onChange="if (parent.save_selection(this.name)) parent.window.opener.chargen()">
+	<option>Adrenal Control<option>Acid Touch<option>Electric Aura<option>Increased Metabolism<option>Natural Attack<option>Chameleon Flesh<option>Hyper Metabolism<option>Improved Natural Attack</select></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

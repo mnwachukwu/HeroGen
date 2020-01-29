@@ -1,0 +1,211 @@
+<!--
+////////////////////////////////////////////////////////////////
+//                                                            //
+// HeroGen (an ALTERNITY Character Generator)                 //
+// Copyright (c) 1999-2003 Mike Heffner. All rights reserved. //
+//                                                            //
+// ALTERNITY is a registered trademark owned by TSR, Inc.     //
+// Copyright (c) 1998 TSR, Inc. All rights reserved.          //
+//                                                            //
+////////////////////////////////////////////////////////////////
+-->
+
+<html>
+<head>
+<title>Achievement Benefits</title>
+<script language="Javascript">
+o = window.opener;
+f = o.parent.frames[0].document.forms[0];
+flaw = new Array();
+function toggle_benefit(name)
+{
+  var token = name.split('_');
+  var x = parseInt(token[1]);
+  var prof = f.i_4.selectedIndex;
+  var cookie = o.get_cookie('other');
+  var index = cookie.indexOf('\t' + name + '\t');
+  var checked = eval('document.forms[0].' + name + '.checked');
+  if (checked)
+  {
+    if (x < 46 || x > 65)
+	{
+	  if (x >= 32 && x <= 45 && o.user_selected_perks(cookie) == 3)
+	  {
+	    alert('You may only select three perks!');
+		eval('document.forms[0].' + name + '.checked = false');
+		return;
+	  }
+	  if (x != 37)
+	    cookie += name + '\t' + o.achievement_benefit[x][1+2*prof] + '\t';
+	  else
+	    cookie += name + '\t' + (document.forms[0].b_37_r[0].checked?'3':'6') + '\t';
+	}
+	else
+	  cookie += name + '\t' + flaw[x] + '\t';
+	o.set_cookie('other', cookie);
+  }
+  else
+    o.remove_benefit_from_cookie(cookie, index);
+  var cookie = o.get_cookie('other');
+  if (x >= 32 && x <= 45)
+  {
+    if (checked)
+	{
+	  eval('f.p_' + o.new_perk[x] + '.checked = true');
+	  if (x == 37) // Fists Of Iron
+	  {
+	    if (document.forms[0].b_37_r[0].checked)
+		{
+		  f.p_8_r[0].checked = true;
+		  f.p_8_r[1].checked = false;
+		}
+	    else if (document.forms[0].b_37_r[1].checked)
+		{
+		  f.p_8_r[1].checked = true;
+		  f.p_8_r[0].checked = false;
+		}
+	  }
+	}
+	else
+	{
+	  eval('f.p_' + o.new_perk[x] + '.checked = false');
+	}
+	o.toggle_perks_flaws('p_' + o.new_perk[x]);
+  }
+  else if (x >= 46 && x <= 65)
+  {
+    if (checked)
+	{
+	  eval('f.f_' + (x-46) + '.checked = false');
+	}
+	else
+	{
+	  eval('f.f_' + (x-46) + '.checked = true');
+	  var token = o.flaw[x-46][1].split('/');
+	  if (token.length > 1)
+	    for (var t=0; t<token.length; t++)
+		  eval('f.f_' + (x-46) + '_r[t].checked = ' + (token[t] == flaw[x]/2));
+	}
+	o.toggle_perks_flaws('f_' + (x-46));
+  }
+  o.chargen();
+}
+function displayable(x, cookie, species, perks)
+{
+  if (x == 4)
+  {
+    if (o.actions_per_round > 3)
+	  return(false);
+  }
+  else if (x >= 5 && x <= 16)
+  {
+	var ability = (x-5) % o.ability.length;
+	if (o.ability_score[ability] >= o.ability_score_limit[species][2*ability+1] ||
+	    (x >= 11 && cookie.indexOf('\tb_' + (x-6) + '\t') == -1))
+	  return(false);
+  }
+  else if (x >= 32 && x <= 45)
+  {
+    if (perks == 3 || eval('f.p_' + o.new_perk[x] + '.checked'))
+	  return(false);
+	if (x == 38)          // Fortitude
+	{
+	  if (f.f_8.checked)  // Fragile
+	    return(false);
+	}
+	else if (x == 39)     // Observant
+	{
+	  if (f.f_10.checked) // Oblivious
+	    return(false);
+	}
+  }
+  else if (x >= 46 && x <= 65)
+  {
+    if (!eval('f.f_' + (x-46) + '.checked'))
+	  return(false);
+  }
+  return(true);
+}
+function validate_improved_fists_of_iron()
+{
+  if (o.skill_value('s_0_4_1') < 1)
+  {
+    alert('Improved Fists of Iron may only be purchased\nwith the power martial arts specialty skill!');
+	document.forms[0].b_37_r[0].checked = true;
+	return;
+  }
+}
+function write_window()
+{
+  document.writeln('<table>')
+  document.writeln('<tr>')
+  document.writeln('<th><br></th>')
+  document.writeln('<th align=left>Benefit</th>')
+  document.writeln('<th>Cost</th>')
+  document.writeln('<th>Level</th>')
+  document.writeln('</tr>')
+  var token = o.get_cookie('info').split('\t');
+  var a_points = parseInt(token[49]);
+  var level = o.get_level(a_points);
+  var cookie = o.get_cookie('other');
+  var prof = f.i_4.selectedIndex;
+  var species = f.i_2.selectedIndex;
+  var perks = o.user_selected_perks(cookie);
+  for (var x=0; x<o.flaw.length; x++)
+    if (eval('f.f_' + x + '.checked') || cookie.indexOf('\tb_' + (46+x) + '\t') > -1)
+	{
+	  var cost = o.flaw[x][1];
+	  var token = cost.split('/');
+	  if (token.length > 1)
+	  {
+	    if (eval('f.f_' + x + '.checked'))
+		{
+		  for (var t=0; t<=token.length; t++)
+		    if (eval('f.f_' + x + '_r[' + t + '].checked'))
+			{
+			  cost = token[t];
+			  break;
+			}
+		}
+		else
+		{
+		  var index = cookie.indexOf('\tb_' + (46+x) + '\t');
+		  var index = cookie.indexOf('\t', index+1) + 1;
+		  var index2 = cookie.indexOf('\t', index+1);
+		  cost = parseInt(cookie.substring(index, index2)) / 2;
+		}
+	  }
+	  flaw[46+x] = 2 * parseInt(cost);
+	}
+  for (x=0; x<o.achievement_benefit.length; x++)
+    if ((cookie.indexOf('\tb_' + x + '\t') > -1) ||
+	    (level >= o.achievement_benefit[x][2+2*prof] && displayable(x, cookie, species, perks)))
+	{
+	  document.writeln('<tr>');
+	  document.writeln('<td><input type="checkbox" name="b_' + x + '" onClick="toggle_benefit(this.name)"' + (cookie.indexOf('\tb_' + x + '\t')==-1?'':' checked') + '></td>');
+	  document.writeln('<td>' + o.achievement_benefit[x][0] + '</td>');
+	  if (x < 46 || x > 65)
+	  {
+		if (x != 37) // Fists of Iron
+	      document.writeln('<td align=center>' + o.achievement_benefit[x][1+2*prof] + '</td>');
+		else
+		  document.writeln('<td align=center><input type="radio" name="b_37_r" value="3" checked>3<input type="radio" name="b_37_r" value="6" onClick="validate_improved_fists_of_iron()">6</td>');
+	  }
+	  else
+	    document.writeln('<td align=center>' + flaw[x] + '</td>');
+	  document.writeln('<td align=center>' + o.achievement_benefit[x][2+2*prof] + '</td>');
+	  document.writeln('</tr>');
+	}
+  document.writeln('</table>')
+}
+</script>
+</head>
+<body bgcolor="white">
+<h2>Achievement Benefits</h2>
+<form>
+<script language="Javascript">
+write_window()
+</script>
+</form>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!--
+////////////////////////////////////////////////////////////////
+//                                                            //
+// HeroGen (an ALTERNITY Character Generator)                 //
+// Copyright (c) 1999-2003 Mike Heffner. All rights reserved. //
+//                                                            //
+// ALTERNITY is a registered trademark owned by TSR, Inc.     //
+// Copyright (c) 1998 TSR, Inc. All rights reserved.          //
+//                                                            //
+////////////////////////////////////////////////////////////////
+-->
+
+<html>
+<body bgcolor="white">
+<form>
+<table>
+<tr>
+<td colspan=2>
+<dl>
+<dt>Origin of Mutation(s)
+<dd><input type="radio" name="i_59" onClick="parent.set_mutation_points(this.name,true); parent.window.opener.chargen()" checked>Engineered mutation(s)
+<dd><input type="radio" name="i_59" onClick="parent.set_mutation_points(this.name,true); parent.window.opener.chargen()">Naturally occurring mutation(s)
+</dl>
+</td>
+<td colspan=2>
+<dl>
+<dt>Uniqueness of Mutation(s)
+<dd><input type="radio" name="i_60" onClick="parent.set_mutation_points(this.name,true); parent.window.opener.chargen()" checked>Belongs to mutant community
+<dd><input type="radio" name="i_60" onClick="parent.set_mutation_points(this.name,true); parent.window.opener.chargen()">Individual with unique mutation(s)
+</dl>
+</td>
+</tr>
+<tr>
+<td>Mutation Points:</td>
+<td><select name="i_61" onFocus="old_index=this.selectedIndex" onChange="parent.check_mutation_points(name, old_index); old_index=this.selectedIndex; parent.window.opener.chargen()">
+    <option value="1">1
+	<option value="2">2
+	<option value="3">3
+	<option value="4">4
+	</select></td>
+<td>Drawback Points:</td>
+<td><select name="i_62" onFocus="old_index=this.selectedIndex" onChange="parent.check_mutation_points(name, old_index); old_index=this.selectedIndex; parent.window.opener.chargen()">
+    <option value="1">1
+	<option value="2">2
+	<option value="3">3
+	<option value="4">4
+	</select></td>
+</tr>
+<td>Points Left:</td><td><input type="text" name="mpl_1" size=4 onChange="parent.set_mutation_points_left()"></td>
+<td>Points Left:</td><td><input type="text" name="mpl_2" size=4 onChange="parent.set_mutation_points_left()"></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

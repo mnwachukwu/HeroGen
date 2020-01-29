@@ -1,0 +1,1596 @@
+<!--
+////////////////////////////////////////////////////////////////
+//                                                            //
+// HeroGen (an ALTERNITY Character Generator)                 //
+// Copyright (c) 1999-2003 Mike Heffner. All rights reserved. //
+//                                                            //
+// ALTERNITY is a registered trademark owned by TSR, Inc.     //
+// Copyright (c) 1998 TSR, Inc. All rights reserved.          //
+//                                                            //
+////////////////////////////////////////////////////////////////
+-->
+
+<html>
+<head>
+<script src="form.js">
+</script>
+</head>
+<body bgcolor="white" onLoad="set_values(); chargen()">
+<form>
+<a name="top"></a>
+<table width="100%">
+<tr>
+<th align=left width=120>Hero's Name</th>
+<td><input type="text" name="i_0" onChange="set_info_cookie(this.name); chargen()"></td>
+<td width=50><br></td>
+<td colspan=2 rowspan=2>
+<table border width="100%">
+<tr>
+<td>
+<table width="100%">
+<tr>
+<td align=center>
+<input type="button" value=" File " onClick="window.open('file.htm', 'fileDB', 'width=225,height=150')">
+</td>
+<td align=center>
+<input type="button" value=" New " onClick="new_hero()">
+</td>
+</tr>
+<tr>
+<td align=center>
+<input type="button" value="Save" onClick="save(1)">
+</td>
+<td align=center>
+<input type="button" value="View" onClick="view()">
+</td>
+</tr>
+</table>
+</td>
+<td>
+<table width="100%">
+<tr>
+<td>
+<input type="button" value="Achievement Points" onClick="window.open('achieve.htm', 'achieve', 'width=400,height=330')">
+</td>
+<td>
+<input type="button" value="Last Resorts" onClick="check_resorts()">
+</td>
+</tr>
+<tr>
+<td align=center colspan=2>
+<input type="button" value="Achievement Benefits" onClick="check_benefits()">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th align=left>Player's Name</th>
+<td><input type="text" name="i_1" onChange="set_info_cookie(this.name); chargen()"></td>
+<td><br></td>
+</tr>
+<tr>
+<th align=left>Species</th>
+<td><select name="i_2" onChange="set_skills(); set_abilities(true); set_info_cookie(this.name); chargen()">
+	<option value="H">Human
+	<option value="F">Fraal
+	<option value="M">Mechalus
+	<option value="S">Sesheyan
+	<option value="T">T'sa
+	<option value="W">Weren
+	<option value="X">Mutant
+	</select></td>
+<td><br></td>
+<td><input type="radio" name="i_9" value="0" onClick="set_info_cookie(this.name); chargen()" checked>Original Skill Rules</td>
+<td align=right rowspan=2><img name="kaboom" src="blank.gif"></td>
+</tr>
+<tr>
+<th align=left>Gender</th>
+<td><select name="i_3" onChange="set_info_cookie(this.name); chargen()">
+	<option value="M">Male
+	<option value="F">Female
+	</select></td>
+<td><br></td>
+<td><input type="radio" name="i_9" value="1" onClick="set_info_cookie(this.name); chargen()">Upgraded Skill Rules
+	<input type="radio" name="i_9" value="2" onClick="document.kaboom.src='kaboom.gif'; set_info_cookie(this.name); chargen()">Mikey Skill Rules
+</td>
+</tr>
+<tr>
+<th align=left>Profession</th>
+<td><select name="i_4" onChange="set_abilities(true); set_info_cookie(this.name); chargen()">
+	<option value="C">Combat Spec
+	<option value="D">Diplomat
+	<option value="F">Free Agent
+	<option value="T">Tech Op
+	<option value="M">Mindwalker
+	</select></td>
+<td><br></td>
+<th align=left>Combat Spec: Situation Bonus</th>
+<td><br></td>
+</tr>
+<tr>
+<th align=left>Career</th>
+<td><input type="text" name="i_5" onChange="set_info_cookie(this.name); chargen()"></td>
+<td><br></td>
+<td><select name="i_10" onChange="set_info_cookie(this.name); chargen()">
+	<option value= "0">
+	<option value= "1">STR: Armor Operation - Combat armor
+	<option value= "2">STR: Armor Operation - Powered armor
+	<option value= "3">STR: Heavy Weapons - Direct fire
+	<option value= "4">STR: Heavy Weapons - Indirect fire
+	<option value= "5">STR: Melee Weapons - Blade
+	<option value= "6">STR: Melee Weapons - Bludgeon
+	<option value= "7">STR: Melee Weapons - Powered Weapon
+	<option value= "8">STR: Unarmed Attack - Brawl
+	<option value= "9">STR: Unarmed Attack - Power martial arts
+	<option value="10">DEX: Ranged Weapons, Mod. - Pistol
+	<option value="11">DEX: Ranged Weapons, Mod. - Rifle
+	<option value="12">DEX: Ranged Weapons, Mod. - SMG
+	<option value="13">DEX: Ranged Weapons, Prim. - Bow
+	<option value="14">DEX: Ranged Weapons, Prim. - Crossbow
+	<option value="15">DEX: Ranged Weapons, Prim. - Flintlock
+	<option value="16">DEX: Ranged Weapons, Prim. - Sling
+	</select></td>
+<td><br></td>
+</tr>
+<tr>
+<th align=left>Attributes</th>
+<td><input type="text" name="i_6" onChange="set_info_cookie(this.name); chargen()"></td>
+<td><br></td>
+<th align=left>Diplomat: Secondary Profession</th>
+<td><br></td>
+</tr>
+<tr>
+<th align=left>Setting</th>
+<td><input type="text" name="i_7" onChange="set_info_cookie(this.name); chargen()"></td>
+<td><br></td>
+<td><select name="i_11" onChange="set_info_cookie(this.name); chargen()">
+	<option value="0">
+	<option value="1">Combat Spec
+	<option value="2">Free Agent
+	<option value="3">Tech Op
+	<option value="4">Mindwalker
+	</select></td>
+<td><br></td>
+</tr>
+<tr>
+<th align=left>Gamemaster</th>
+<td><input type="text" name="i_8" onChange="set_info_cookie(this.name); chargen()"></td>
+<td><br></td>
+<th align=left>Free Agent: Resistance Bonus</th>
+<td><br></td>
+</tr>
+<tr>
+<th align=left>Cool Font</th>
+<td><input type="checkbox" name="i_48" onClick="set_info_cookie(this.name); chargen()"></td>
+<td><br></td>
+<td><select name="i_12" onChange="set_info_cookie(this.name); chargen()">
+	<option value="0">
+	<option value="1">Strength
+	<option value="2">Dexterity
+	<option value="3">Intelligence
+	<option value="4">Will
+	</select></td>
+<td><br></td>
+</tr>
+<tr>
+<th align=left nowrap>Weapon Accuracy</th>
+<td><input type="checkbox" name="i_52" onClick="set_info_cookie(this.name); chargen()"></td>
+</tr>
+</table>
+<a name="abilities"></a>
+<table>
+<tr>
+<th align=left width=120>ABILITIES</th>
+<th align=left width=118>Strength</th>
+<td><select name="i_13" onChange="set_info_cookie(this.name); chargen()">
+	<option value="11">11
+	<option value="12">12
+	<option value="13">13
+	<option value="14">14
+	</select>
+</td>
+</tr>
+<tr>
+<td><br></td>
+<th align=left>Dexterity</th>
+<td><select name="i_14" onChange="set_info_cookie(this.name); chargen()">
+	<option value="4">4
+	<option value="5">5
+	<option value="6">6
+	<option value="7">7
+	<option value="8">8
+	<option value="9">9
+	<option value="10">10
+	<option value="11">11
+	<option value="12">12
+	<option value="13">13
+	<option value="14">14
+	</select>
+</td>
+</tr>
+<tr>
+<td><br></td>
+<th align=left>Constitution</th>
+<td><select name="i_15" onChange="set_info_cookie(this.name); chargen()">
+	<option value="9">9
+	<option value="10">10
+	<option value="11">11
+	<option value="12">12
+	<option value="13">13
+	<option value="14">14
+	</select>
+</td>
+</tr>
+<tr>
+<td><br></td>
+<th align=left>Intelligence</th>
+<td><select name="i_16" onChange="set_info_cookie(this.name); chargen()">
+	<option value="4">4
+	<option value="5">5
+	<option value="6">6
+	<option value="7">7
+	<option value="8">8
+	<option value="9">9
+	<option value="10">10
+	<option value="11">11
+	<option value="12">12
+	<option value="13">13
+	<option value="14">14
+	</select>
+</td>
+</tr>
+<tr>
+<td><br></td>
+<th align=left>Will</th>
+<td><select name="i_17" onChange="set_info_cookie(this.name); chargen()">
+	<option value="4">4
+	<option value="5">5
+	<option value="6">6
+	<option value="7">7
+	<option value="8">8
+	<option value="9">9
+	<option value="10">10
+	<option value="11">11
+	<option value="12">12
+	<option value="13">13
+	<option value="14">14
+	</select>
+</td>
+</tr>
+<tr>
+<td><br></td>
+<th align=left>Personality</th>
+<td><select name="i_18" onChange="set_info_cookie(this.name); chargen()">
+	<option value="4">4
+	<option value="5">5
+	<option value="6">6
+	<option value="7">7
+	<option value="8">8
+	<option value="9">9
+	<option value="10">10
+	<option value="11">11
+	<option value="12">12
+	<option value="13">13
+	<option value="14">14
+	</select>
+</td>
+</tr>
+<tr>
+<td><br></td>
+<td><br></td>
+<td><input name="sum" type="text" size=2 onChange="sum_attributes()"> points allocated</td>
+</tr>
+</table>
+<hr>
+<a name="perks"></a>
+<table>
+<tr>
+<th align=left bgcolor="#00FF00" width=200>Perk</th>
+<th width=100>Cost</th><th width=100>Ability</th><th width=100>Type</th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_0" onClick="toggle_perks_flaws(this.name); chargen()"><i>Alien Artifact</i></th>
+<td align=center>8</td><td align=center>-</td><td align=center>Special</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_1" onClick="toggle_perks_flaws(this.name); chargen()">Ambidextrous</th>
+<td align=center>4</td><td align=center>DEX</td><td align=center>Active</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_2" onClick="toggle_perks_flaws(this.name); chargen()">Animal Friend</th>
+<td align=center>4</td><td align=center>WIL</td><td align=center>Conscious</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_3" onClick="toggle_perks_flaws(this.name); chargen()">Celebrity</th>
+<td align=center>3</td><td align=center>PER</td><td align=center>Conscious</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_4" onClick="toggle_perks_flaws(this.name); chargen()">Concentration</th>
+<td align=center>3</td><td align=center>INT</td><td align=center>Conscious</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_5" onClick="toggle_perks_flaws(this.name); chargen()">Danger Sense</th>
+<td align=center>4</td><td align=center>WIL</td><td align=center>Active</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_6" onClick="toggle_perks_flaws(this.name); chargen()"><i>Faith</i></th>
+<td align=center>5</td><td align=center>WIL</td><td align=center>Conscious</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_7" onClick="toggle_perks_flaws(this.name); chargen()"><i>Filthy Rich</i></th>
+<td align=center>6</td><td align=center>PER</td><td align=center>Conscious</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_8" onClick="toggle_perks_flaws(this.name); chargen()">Fists of Iron</th>
+<td align=center><input type="radio" name="p_8_r" onClick="set_perk_flaw_cost(this.name,true)" checked>2 <input type="radio" name="p_8_r" onClick="set_perk_flaw_cost(this.name,true)">5</td><td align=center>STR</td><td align=center>Active</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_9" onClick="toggle_perks_flaws(this.name); chargen()">Fortitude</th>
+<td align=center>4</td><td align=center>CON</td><td align=center>Active</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_10" onClick="toggle_perks_flaws(this.name); chargen()"><i>Good Luck</i></th>
+<td align=center>3</td><td align=center>WIL</td><td align=center>Conscious</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_11" onClick="toggle_perks_flaws(this.name); chargen()"><i>Great Looks</i></th>
+<td align=center>3</td><td align=center>PER</td><td align=center>Active</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_12" onClick="toggle_perks_flaws(this.name); chargen()"><i>Heightened Ability</i></th>
+<td align=center>10</td>
+<td align=center>
+<select name="p_12_r" onChange="set_perk_flaw_cost(this.name,true)">
+	<option value="STR">STR
+	<option value="DEX">DEX
+	<option value="CON">CON
+	<option value="INT">INT
+	<option value="WIL">WIL
+	<option value="PER">PER
+	</select></td>
+</td>
+<td align=center>Active</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_13" onClick="toggle_perks_flaws(this.name); chargen()">Observant</th>
+<td align=center>3</td><td align=center>WIL</td><td align=center>Active</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_14" onClick="toggle_perks_flaws(this.name); chargen()">Photo Memory</th>
+<td align=center>3</td><td align=center>INT</td><td align=center>Conscious</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_15" onClick="toggle_perks_flaws(this.name); chargen()">Powerful Ally</th>
+<td align=center>4</td><td align=center>PER</td><td align=center>Conscious</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_16" onClick="toggle_perks_flaws(this.name); chargen()"><i>Psionic Awareness</i></th>
+<td align=center>3</td><td align=center>INT</td><td align=center>Active</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_17" onClick="toggle_perks_flaws(this.name); chargen()">Reflexes</th>
+<td align=center>4</td><td align=center>DEX</td><td align=center>Active</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_18" onClick="toggle_perks_flaws(this.name); chargen()">Reputation</th>
+<td align=center>3</td><td align=center>WIL</td><td align=center>Active</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_19" onClick="toggle_perks_flaws(this.name); chargen()">Tough as Nails</th>
+<td align=center>4</td><td align=center>STR</td><td align=center>Active</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_20" onClick="toggle_perks_flaws(this.name); chargen()"><i>Vigor</i></th>
+<td align=center><input type="checkbox" name="p_20_r_0" onClick="set_perk_flaw_cost(this.name,true)">2 <input type="checkbox" name="p_20_r_1" onClick="set_perk_flaw_cost(this.name,true)">3 <input type="checkbox" name="p_20_r_2" onClick="set_perk_flaw_cost(this.name,true)">4</td><td align=center>CON</td><td align=center>Active</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="p_21" onClick="toggle_perks_flaws(this.name); chargen()">Willpower</th>
+<td align=center>4</td><td align=center>WIL</td><td align=center>Active</td>
+</tr>
+</table>
+<font size="-1">The use of <i>italic</i> type for a perk's name denotes a perk that must be selected at the time of character creation if it is going to be purchased at all</font>
+<hr>
+<a name="flaws"></a>
+<table>
+<tr>
+<th align=left bgcolor="red" width=200>Flaw</th>
+<th width=100>+SP</th><th width=100>Ability</th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="f_0" onClick="toggle_perks_flaws(this.name); chargen()">Alien Artifact</th>
+<td align=center>5</td><td align=center>-</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="f_1" onClick="toggle_perks_flaws(this.name); chargen()">Bad Luck</th>
+<td align=center>6</td><td align=center>WIL</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="f_2" onClick="toggle_perks_flaws(this.name); chargen()">Clueless</th>
+<td align=center><input type="radio" name="f_2_r" onClick="set_perk_flaw_cost(this.name,true)" checked>2 <input type="radio" name="f_2_r" onClick="set_perk_flaw_cost(this.name,true)">4 <input type="radio" name="f_2_r" onClick="set_perk_flaw_cost(this.name,true)">6</td><td align=center>INT</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="f_3" onClick="toggle_perks_flaws(this.name); chargen()">Clumsy</th>
+<td align=center>5</td><td align=center>DEX</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="f_4" onClick="toggle_perks_flaws(this.name); chargen()">Code of Honor</th>
+<td align=center>3</td><td align=center>WIL</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="f_5" onClick="toggle_perks_flaws(this.name); chargen()">Delicate</th>
+<td align=center>3</td><td align=center>STR</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="f_6" onClick="toggle_perks_flaws(this.name); chargen()">Dirt Poor</th>
+<td align=center>5</td><td align=center>PER</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="f_7" onClick="toggle_perks_flaws(this.name); chargen()">Forgetful</th>
+<td align=center>5</td><td align=center>INT</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="f_8" onClick="toggle_perks_flaws(this.name); chargen()">Fragile</th>
+<td align=center>3</td><td align=center>CON</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="f_9" onClick="toggle_perks_flaws(this.name); chargen()">Infamy</th>
+<td align=center><input type="radio" name="f_9_r" onClick="set_perk_flaw_cost(this.name,true)" checked>2 <input type="radio" name="f_9_r" onClick="set_perk_flaw_cost(this.name,true)">4 <input type="radio" name="f_9_r" onClick="set_perk_flaw_cost(this.name,true)">6</td><td align=center>PER</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="f_10" onClick="toggle_perks_flaws(this.name); chargen()">Oblivious</th>
+<td align=center>4</td><td align=center>WIL</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="f_11" onClick="toggle_perks_flaws(this.name); chargen()">Obsessed</th>
+<td align=center><input type="radio" name="f_11_r" onClick="set_perk_flaw_cost(this.name,true)" checked>2 <input type="radio" name="f_11_r" onClick="set_perk_flaw_cost(this.name,true)">4 <input type="radio" name="f_11_r" onClick="set_perk_flaw_cost(this.name,true)">6</td><td align=center>INT</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="f_12" onClick="toggle_perks_flaws(this.name); chargen()">Old Injury</th>
+<td align=center><input type="radio" name="f_12_r" onClick="set_perk_flaw_cost(this.name,true)" checked>2 <input type="radio" name="f_12_r" onClick="set_perk_flaw_cost(this.name,true)">4 <input type="radio" name="f_12_r" onClick="set_perk_flaw_cost(this.name,true)">6</td><td align=center>STR</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="f_13" onClick="toggle_perks_flaws(this.name); chargen()">Phobia</th>
+<td align=center><input type="radio" name="f_13_r" onClick="set_perk_flaw_cost(this.name,true)" checked>2 <input type="radio" name="f_13_r" onClick="set_perk_flaw_cost(this.name,true)">4 <input type="radio" name="f_13_r" onClick="set_perk_flaw_cost(this.name,true)">6</td><td align=center>WIL</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="f_14" onClick="toggle_perks_flaws(this.name); chargen()">Poor Looks</th>
+<td align=center>3</td><td align=center>PER</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="f_15" onClick="toggle_perks_flaws(this.name); chargen()">Powerful Enemy</th>
+<td align=center><input type="radio" name="f_15_r" onClick="set_perk_flaw_cost(this.name,true)" checked>2 <input type="radio" name="f_15_r" onClick="set_perk_flaw_cost(this.name,true)">4 <input type="radio" name="f_15_r" onClick="set_perk_flaw_cost(this.name,true)">6</td><td align=center>PER</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="f_16" onClick="toggle_perks_flaws(this.name); chargen()">Primitive</th>
+<td align=center><input type="radio" name="f_16_r" onClick="set_perk_flaw_cost(this.name,true)" checked>2 <input type="radio" name="f_16_r" onClick="set_perk_flaw_cost(this.name,true)">4 <input type="radio" name="f_16_r" onClick="set_perk_flaw_cost(this.name,true)">6</td><td align=center>INT</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="f_17" onClick="toggle_perks_flaws(this.name); chargen()">Slow</th>
+<td align=center>6</td><td align=center>DEX</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="f_18" onClick="toggle_perks_flaws(this.name); chargen()">Spineless</th>
+<td align=center><input type="radio" name="f_18_r" onClick="set_perk_flaw_cost(this.name,true)" checked>2 <input type="radio" name="f_18_r" onClick="set_perk_flaw_cost(this.name,true)">4 <input type="radio" name="f_18_r" onClick="set_perk_flaw_cost(this.name,true)">6</td><td align=center>WIL</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="f_19" onClick="toggle_perks_flaws(this.name); chargen()">Temper</th>
+<td align=center><input type="radio" name="f_19_r" onClick="set_perk_flaw_cost(this.name,true)" checked>2 <input type="radio" name="f_19_r" onClick="set_perk_flaw_cost(this.name,true)">4 <input type="radio" name="f_19_r" onClick="set_perk_flaw_cost(this.name,true)">6</td><td align=center>WIL</td>
+</tr>
+</table>
+<hr>
+<a name="weapons"></a>
+<table width="100%">
+<tr>
+<th align=left><font size="+1">Weapons</font></th>
+<td align=right colspan=5><input type="button" value="Custom Weapons" onClick="window.open('weapons.htm', 'customWeapons', 'status,width=730,height=360')"></td>
+</tr>
+<tr>
+<th align=left colspan=6>
+<a name="melee_weapons">Melee Weapons</a> |
+<font size="-1"><a href="#ranged_weapons">Ranged Weapons</a></font> |
+<font size="-1"><a href="#heavy_weapons">Heavy Weapons</a></font>
+</th>
+</tr>
+<tr>
+<th align=left>Weapon</th><th align=left>Skill</th><th>Acc</th>
+<th align=left>Range</th><th>Type</th><th align=left>Damage (O/G/A)</th>
+</tr>
+<tr>
+<th align=left colspan=6 bgcolor="#FFFF99"><i>Progress Level 0: Stone Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_0" onClick="toggle_weapons_armor(this.name); chargen()">Club</th>
+<td>Melee-<i>bludgeon</i></td><td align=center>0</td>
+<td>Personal</td><td align=center>LI/O</td><td>d4+1s/d4w/d4+1w</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_1" onClick="toggle_weapons_armor(this.name); chargen()">Dagger</th>
+<td>Melee-<i>blade</i></td><td align=center>0</td>
+<td>Personal*</td><td align=center>LI/O</td><td>d4w/d4+1w/d4+2w</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_2" onClick="toggle_weapons_armor(this.name); chargen()">Quarterstaff</th>
+<td>Melee-<i>bludgeon</i></td><td align=center>-1</td>
+<td>Personal</td><td align=center>LI/O</td><td>d4+1s/d4+3s/d6w</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_3" onClick="toggle_weapons_armor(this.name); chargen()">Spear</th>
+<td>Melee-<i>blade</i></td><td align=center>0</td>
+<td>Personal*</td><td align=center>LI/O</td><td>d4w/d4+2w/d4m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_4" onClick="this.checked=true" checked>Unarmed</th>
+<td>Unarmed Attack</td><td align=center>0</td>
+<td>Personal</td><td align=center>LI/O</td><td>d4s/d4+1s/d4+2s</td>
+</tr>
+<tr>
+<th align=left colspan=6 bgcolor="#FFFF99"><i>Progress Level 1: Bronze/Iron Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_5" onClick="toggle_weapons_armor(this.name); chargen()">Gauntlet</th>
+<td>Unarmed Attack</td><td align=center>0</td>
+<td>Personal</td><td align=center>LI/O</td><td>d4+1s/d4+2s/d4-1w</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_6" onClick="toggle_weapons_armor(this.name); chargen()">Hand ax</th>
+<td>Melee-<i>blade</i></td><td align=center>0</td>
+<td>Personal*</td><td align=center>LI/O</td><td>d4+1w/d4+2w/d4+3w</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_7" onClick="toggle_weapons_armor(this.name); chargen()">Mace</th>
+<td>Melee-<i>bludgeon</i></td><td align=center>0</td>
+<td>Personal</td><td align=center>LI/O</td><td>d6+1s/d4+1w/d6+1w</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_8" onClick="toggle_weapons_armor(this.name); chargen()">Short sword</th>
+<td>Melee-<i>blade</i></td><td align=center>0</td>
+<td>Personal</td><td align=center>LI/O</td><td>d4w/d6w/d6+2w</td>
+</tr>
+<tr>
+<th align=left colspan=6 bgcolor="#FFFF99"><i>Progress Level 2: Middle Ages</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_9" onClick="toggle_weapons_armor(this.name); chargen()">Broad sword</th>
+<td>Melee-<i>blade</i></td><td align=center>0</td>
+<td>Personal</td><td align=center>LI/O</td><td>d4+2w/d6+2w/d4m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_10" onClick="toggle_weapons_armor(this.name); chargen()">Flail</th>
+<td>Melee-<i>bludgeon</i></td><td align=center>+1</td>
+<td>Personal</td><td align=center>LI/O</td><td>d6+2s/d4+2w/d6+2w</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_11" onClick="toggle_weapons_armor(this.name); chargen()">Great ax</th>
+<td>Melee-<i>blade</i></td><td align=center>+1</td>
+<td>Personal</td><td align=center>LI/O</td><td>d6+1w/d6+2w/d4+1m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_12" onClick="toggle_weapons_armor(this.name); chargen()">Nunchaku</th>
+<td>Melee-<i>bludgeon</i></td><td align=center>0</td>
+<td>Personal</td><td align=center>LI/O</td><td>d6s/d6+2s/d8+3s</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_13" onClick="toggle_weapons_armor(this.name); chargen()">Polearm</th>
+<td>Melee-<i>blade</i></td><td align=center>+1</td>
+<td>Personal</td><td align=center>LI/O</td><td>d6+1w/d4+3w/d4+1m</td>
+</tr>
+<tr>
+<th align=left colspan=6 bgcolor="#FFFF99"><i>Progress Level 3: Age of Reason</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_14" onClick="toggle_weapons_armor(this.name); chargen()">Cutlass</th>
+<td>Melee-<i>blade</i></td><td align=center>+1</td>
+<td>Personal</td><td align=center>LI/O</td><td>d4+1w/d6+1w/d6+3w</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_15" onClick="toggle_weapons_armor(this.name); chargen()">Katana</th>
+<td>Melee-<i>blade</i></td><td align=center>-1</td>
+<td>Personal</td><td align=center>LI/O</td><td>d4+2w/d6+2w/d4+1m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_16" onClick="toggle_weapons_armor(this.name); chargen()">Rapier</th>
+<td>Melee-<i>blade</i></td><td align=center>-1</td>
+<td>Personal</td><td align=center>LI/O</td><td>d4w/d4+1w/d4+2w</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_17" onClick="toggle_weapons_armor(this.name); chargen()">Saber</th>
+<td>Melee-<i>blade</i></td><td align=center>0</td>
+<td>Personal</td><td align=center>LI/O</td><td>d4w/d4+2w/2d4+1w</td>
+</tr>
+<tr>
+<th align=left colspan=6 bgcolor="#FFFF99"><i>Progress Level 4: Industrial Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_18" onClick="toggle_weapons_armor(this.name); chargen()">Bayonet</th>
+<td>Melee-<i>blade</i></td><td align=center>+1</td>
+<td>Personal</td><td align=center>LI/O</td><td>d4w/d4+2w/d4m</td>
+</tr>
+<tr>
+<th align=left colspan=6 bgcolor="#FFFF99"><i>Progress Level 5: Information Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_19" onClick="toggle_weapons_armor(this.name); chargen()">Combat knife</th>
+<td>Melee-<i>blade</i></td><td align=center>0</td>
+<td>Personal*</td><td align=center>LI/O</td><td>d4+1w/d4+2w/d4+3w</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_20" onClick="toggle_weapons_armor(this.name); chargen()">Stun baton</th>
+<td>Melee-<i>powered</i></td><td align=center>0</td>
+<td>Personal</td><td align=center>En/O</td><td>d4+1s/d4+3s/d6+4s</td>
+</tr>
+<tr>
+<th align=left colspan=6 bgcolor="#FFFF99"><i>Progress Level 6: Fusion Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_21" onClick="toggle_weapons_armor(this.name); chargen()">Chainsword</th>
+<td>Melee-<i>powered</i></td><td align=center>+1</td>
+<td>Personal</td><td align=center>LI/O</td><td>d8+1w/d8+2w/d4+1m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_22" onClick="toggle_weapons_armor(this.name); chargen()">Pulse baton</th>
+<td>Melee-<i>powered</i></td><td align=center>0</td>
+<td>Personal</td><td align=center>En/O</td><td>d8s/d4+2w/d6+2w</td>
+</tr>
+<tr>
+<th align=left colspan=6 bgcolor="#FFFF99"><i>Progress Level 7: Gravity Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_23" onClick="toggle_weapons_armor(this.name); chargen()">Gravemace</th>
+<td>Melee-<i>powered</i></td><td align=center>0</td>
+<td>Personal</td><td align=center>LI/O</td><td>d8+2s/d6+2w/d8+2w</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_24" onClick="toggle_weapons_armor(this.name); chargen()">Power Cestus</th>
+<td>Unarmed-<i>brawl</i></td><td align=center>0</td>
+<td>Personal</td><td align=center>LI/O</td><td>d4+2s/d4w/d4+1w</td>
+</tr>
+<tr>
+<th align=left colspan=6 bgcolor="#FFFF99"><i>Progress Level 8: Energy Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_25" onClick="toggle_weapons_armor(this.name); chargen()">Star sword</th>
+<td>Melee-<i>powered</i></td><td align=center>0</td>
+<td>Personal</td><td align=center>En/G</td><td>d6+1w/2d6w/d4+3m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_26" onClick="toggle_weapons_armor(this.name); chargen()">Tri-staff</th>
+<td>Melee-<i>powered</i></td><td align=center>-1</td>
+<td>Personal</td><td align=center>En/O</td><td>d8+2w/3d4+1w/d6m</td>
+</tr>
+<td colspan=6>
+* Weapon can be thrown using the Athletics-<i>throw</i> skill;
+see &quot;Thrown Weapons,&quot; page 57.
+</td>
+</table>
+<h4><font size="-1"><a href="#melee_weapons">Melee Weapons</a></font> |
+	<a name="ranged_weapons">Ranged Weapons</a> |
+	<font size="-1"><a href="#heavy_weapons">Heavy Weapons</a></font></h4>
+<table width="100%">
+<tr>
+<th align=left>Weapon</th>
+<th align=left>Skill</th><th>Acc</th><th>Md</th>
+<th>Range</th><th>Type</th><th align=left>Damage (O/G/A)</th>
+</tr>
+<tr>
+<th align=left colspan=7 bgcolor="#FFFF99"><i>Progress Level 0: Stone Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_27" onClick="toggle_weapons_armor(this.name); chargen()">Bow, short</th>
+<td>Prim-<i>bow</i></td><td align=center>+1</td><td align=center>F</td>
+<td align=center>20/40/100</td><td align=center>LI/O</td><td>d4w/d4+2w/d4+3w</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_28" onClick="toggle_weapons_armor(this.name); chargen()">Sling</th>
+<td>Prim-<i>sling</i></td><td align=center>+1</td><td align=center>F</td>
+<td align=center>10/20/60</td><td align=center>LI/O</td><td>d4s/d4+2s/d4w</td>
+</tr>
+<tr>
+<th align=left colspan=7 bgcolor="#FFFF99"><i>Progress Level 1: Bronze/Iron Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_29" onClick="toggle_weapons_armor(this.name); chargen()">Javelin</th>
+<td>Athl-<i>throw</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>Per STR</td><td align=center>LI/O</td><td>d4w/d4+1w/d4+2w</td>
+</tr>
+<tr>
+<th align=left colspan=7 bgcolor="#FFFF99"><i>Progress Level 2: Middle Ages</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_30" onClick="toggle_weapons_armor(this.name); chargen()">Bow, long</th>
+<td>Prim-<i>bow</i></td><td align=center>+1</td><td align=center>F</td>
+<td align=center>40/80/200</td><td align=center>LI/O</td><td>d4+1w/d6+1w/d4m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_31" onClick="toggle_weapons_armor(this.name); chargen()">Crossbow</th>
+<td>Prim-<i>crossbow</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>50/100/250</td><td align=center>LI/O</td><td>d4+2w/d6+2w/d4+1m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_32" onClick="toggle_weapons_armor(this.name); chargen()">Shuriken</th>
+<td>Athl-<i>throw</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>Per STR</td><td align=center>LI/O</td><td>d4s/d4w/d4+1w</td>
+</tr>
+<tr>
+<th align=left colspan=7 bgcolor="#FFFF99"><i>Progress Level 3: Age of Reason</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_33" onClick="toggle_weapons_armor(this.name); chargen()">Musket, flintlock</th>
+<td>Prim-<i>flintlock</i></td><td align=center>+2</td><td align=center>F</td>
+<td align=center>20/40/100</td><td align=center>HI/O</td><td>d6+1w/d6+3w/d6+1m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_34" onClick="toggle_weapons_armor(this.name); chargen()">Pistol, flintlock</th>
+<td>Prim-<i>flintlock</i></td><td align=center>+2</td><td align=center>F</td>
+<td align=center>4/8/16</td><td align=center>HI/O</td><td>d4+2w/d6+2w/d4+1m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_35" onClick="toggle_weapons_armor(this.name); chargen()">Rifle, long</th>
+<td>Prim-<i>flintlock</i></td><td align=center>+1</td><td align=center>F</td>
+<td align=center>30/60/150</td><td align=center>HI/O</td><td>d6w/d6+2w/d6m</td>
+</tr>
+<tr>
+<th align=left colspan=7 bgcolor="#FFFF99"><i>Progress Level 4: Industrial Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_36" onClick="toggle_weapons_armor(this.name); chargen()">Derringer</th>
+<td>Mod-<i>pistol</i></td><td align=center>+1</td><td align=center>F</td>
+<td align=center>2/6/12</td><td align=center>HI/O</td><td>d4-1w/d6w/d6+2w</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_37" onClick="toggle_weapons_armor(this.name); chargen()">Pistol, .32 rev.</th>
+<td>Mod-<i>pistol</i></td><td align=center>+1</td><td align=center>F</td>
+<td align=center>4/8/30</td><td align=center>HI/O</td><td>d4w/d6w/d4m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_38" onClick="toggle_weapons_armor(this.name); chargen()">Pistol, .45 rev.</th>
+<td>Mod-<i>pistol</i></td><td align=center>+1</td><td align=center>F</td>
+<td align=center>4/10/40</td><td align=center>HI/O</td><td>d4+1w/d4+2w/d6m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_39" onClick="toggle_weapons_armor(this.name); chargen()">Rifle, .30 bolt</th>
+<td>Mod-<i>rifle</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>50/100/300</td><td align=center>HI/O</td><td>d4+2w/d6+2w/d4+1m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_40" onClick="toggle_weapons_armor(this.name); chargen()">Rifle, .44 lever</th>
+<td>Mod-<i>rifle</i></td><td align=center>+1</td><td align=center>F</td>
+<td align=center>40/80/240</td><td align=center>HI/O</td><td>d6w/d8+1w/d6m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_41" onClick="toggle_weapons_armor(this.name); chargen()">Shotgun, 12 gauge</th>
+<td>Mod-<i>rifle</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>6/12/30</td><td align=center>HI/O</td><td>d4w/d6w/d4m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_42" onClick="toggle_weapons_armor(this.name); chargen()">SMG, .45 cal</th>
+<td>Mod-<i>SMG</i></td><td align=center>+2</td><td align=center>B/A</td>
+<td align=center>8/16/40</td><td align=center>HI/O</td><td>d4+1w/d4+2w/d6m</td>
+</tr>
+<tr>
+<th align=left colspan=7 bgcolor="#FFFF99"><i>Progress Level 5: Information Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_43" onClick="toggle_weapons_armor(this.name); chargen()">Pistol, .38 rev</th>
+<td>Mod-<i>pistol</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>6/12/40</td><td align=center>HI/O</td><td>d4w/d4+1w/d4m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_44" onClick="toggle_weapons_armor(this.name); chargen()">Pistol, .44 magnum</th>
+<td>Mod-<i>pistol</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>6/12/50</td><td align=center>HI/O</td><td>d4+2w/d4+3w/d4+2m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_45" onClick="toggle_weapons_armor(this.name); chargen()">Pistol, 9mm</th>
+<td>Mod-<i>pistol</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>6/12/50</td><td align=center>HI/O</td><td>d4+1w/d4+2w/d4m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_46" onClick="toggle_weapons_armor(this.name); chargen()">Rifle, 7.62mm</th>
+<td>Mod-<i>rifle</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>70/140/350</td><td align=center>HI/O</td><td>d6+1w/2d4+1w/d4+1m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_47" onClick="toggle_weapons_armor(this.name); chargen()">Rifle, assault</th>
+<td>Mod-<i>rifle</i></td><td align=center>0</td><td align=center>F/B/A</td>
+<td align=center>60/120/300</td><td align=center>HI/O</td><td>d4+2w/d6+3w/d4+1m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_48" onClick="toggle_weapons_armor(this.name); chargen()">SMG, 9mm</th>
+<td>Mod-<i>SMG</i></td><td align=center>+1</td><td align=center>B/A</td>
+<td align=center>10/20/80</td><td align=center>HI/O</td><td>d4+1w/d4+2w/d4m</td>
+</tr>
+<tr>
+<th align=left colspan=7 bgcolor="#FFFF99"><i>Progress Level 6: Fusion Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_49" onClick="toggle_weapons_armor(this.name); chargen()">Pistol, 9mm ch</th>
+<td>Mod-<i>pistol</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>8/16/60</td><td align=center>HI/O</td><td>d4+1w/d6+1w/d4m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_50" onClick="toggle_weapons_armor(this.name); chargen()">Pistol, 9mm zero-g</th>
+<td>Mod-<i>pistol</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>4/10/40</td><td align=center>HI/O</td><td>d4+1w/d6+1w/d4m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_51" onClick="toggle_weapons_armor(this.name); chargen()">Pistol, 11mm ch</th>
+<td>Mod-<i>pistol</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>10/20/80</td><td align=center>HI/O</td><td>d4+2w/d6+2w/d4+1m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_52" onClick="toggle_weapons_armor(this.name); chargen()">Rifle, 11mm ch</th>
+<td>Mod-<i>rifle</i></td><td align=center>0</td><td align=center>F/B/A</td>
+<td align=center>80/160/400</td><td align=center>HI/O</td><td>d6+1w/d6+3w/d6+1m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_53" onClick="toggle_weapons_armor(this.name); chargen()">Rifle, 11mm zero-g</th>
+<td>Mod-<i>rifle</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>30/60/200</td><td align=center>HI/O</td><td>d6+1w/d6+3w/d6+1m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_54" onClick="toggle_weapons_armor(this.name); chargen()">Shotgun, autoflec</th>
+<td>Mod-<i>SMG</i></td><td align=center>0</td><td align=center>F/B/A</td>
+<td align=center>10/20/40</td><td align=center>HI/O</td><td>d4w/d6w/d4m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_55" onClick="toggle_weapons_armor(this.name); chargen()">SMG, 9mm ch</th>
+<td>Mod-<i>SMG</i></td><td align=center>+1</td><td align=center>B/A</td>
+<td align=center>20/40/100</td><td align=center>HI/O</td><td>d4+1w/d6+1w/d4m</td>
+</tr>
+<tr>
+<th align=left colspan=7 bgcolor="#FFFF99"><i>Progress Level 7: Gravity Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_56" onClick="toggle_weapons_armor(this.name); chargen()">Pistol, 15mm sabot</th>
+<td>Mod-<i>pistol</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>10/20/100</td><td align=center>HI/O</td><td>2d4w/2d4+1w/d4+3m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_57" onClick="toggle_weapons_armor(this.name); chargen()">Pistol, laser</th>
+<td>Mod-<i>pistol</i></td><td align=center>-1</td><td align=center>F</td>
+<td align=center>20/40/200</td><td align=center>En/O</td><td>d4+1w/d6+1w/d4m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_58" onClick="toggle_weapons_armor(this.name); chargen()">Pistol, mass</th>
+<td>Mod-<i>pistol</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>2/6/12</td><td align=center>En/G</td><td>d6w/d6+2w/d6m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_59" onClick="toggle_weapons_armor(this.name); chargen()">Pistol, stutter</th>
+<td>Mod-<i>pistol</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>6/12/30</td><td align=center>LI/O</td><td>d6+2s/d8+2s/d8+4s</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_60" onClick="toggle_weapons_armor(this.name); chargen()">Rifle, laser</th>
+<td>Mod-<i>rifle</i></td><td align=center>-1</td><td align=center>F</td>
+<td align=center>100/400/1000</td><td align=center>En/O</td><td>d6+1w/d6+3w/d4+1m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_61" onClick="toggle_weapons_armor(this.name); chargen()">Rifle, mass</th>
+<td>Mod-<i>rifle</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>4/12/30</td><td align=center>En/G</td><td>d6w/d8+1w/d6+1m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_62" onClick="toggle_weapons_armor(this.name); chargen()">Rifle, quantum</th>
+<td>Mod-<i>rifle</i></td><td align=center>0</td><td align=center>F/B/A</td>
+<td align=center>80/200/500</td><td align=center>En/O</td><td>d4+3w/d6+4w/d6+1m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_63" onClick="toggle_weapons_armor(this.name); chargen()">Rifle, render</th>
+<td>Mod-<i>rifle</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>50/100/250</td><td align=center>En/O</td><td>d6+1s/d6+1w/d4+1m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_64" onClick="toggle_weapons_armor(this.name); chargen()">SMG, laser</th>
+<td>Mod-<i>SMG</i></td><td align=center>0</td><td align=center>B/A</td>
+<td align=center>20/80/200</td><td align=center>En/O</td><td>d6w/d6+2w/d4m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_65" onClick="toggle_weapons_armor(this.name); chargen()">SMG, stutter</th>
+<td>Mod-<i>SMG</i></td><td align=center>0</td><td align=center>B/A</td>
+<td align=center>10/20/80</td><td align=center>LI/O</td><td>d6+2s/d8+2s/d8+4s</td>
+</tr>
+<tr>
+<th align=left colspan=7 bgcolor="#FFFF99"><i>Progress Level 8: Energy Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_66" onClick="toggle_weapons_armor(this.name); chargen()">Automaser</th>
+<td>Mod-<i>SMG</i></td><td align=center>-1</td><td align=center>B/A</td>
+<td align=center>20/60/120</td><td align=center>En/O</td><td>d6w/d6+2w/d4m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_67" onClick="toggle_weapons_armor(this.name); chargen()">Pistol, hvy maser</th>
+<td>Mod-<i>pistol</i></td><td align=center>-1</td><td align=center>F</td>
+<td align=center>20/40/80</td><td align=center>En/G</td><td>d6+1w/2d4+1w/d4+1m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_68" onClick="toggle_weapons_armor(this.name); chargen()">Pistol, maser</th>
+<td>Mod-<i>pistol</i></td><td align=center>-2</td><td align=center>F</td>
+<td align=center>10/20/60</td><td align=center>En/O</td><td>d6w/d6+2w/d4m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_69" onClick="toggle_weapons_armor(this.name); chargen()">Rifle, hvy maser</th>
+<td>Mod-<i>rifle</i></td><td align=center>-1</td><td align=center>F/B/A</td>
+<td align=center>40/200/500</td><td align=center>En/G</td><td>d8+1w/d12w/d6+1m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_70" onClick="toggle_weapons_armor(this.name); chargen()">Rifle, maser</th>
+<td>Mod-<i>rifle</i></td><td align=center>-2</td><td align=center>F/B/A</td>
+<td align=center>60/120/400</td><td align=center>En/O</td><td>d6+2w/2d4+2w/d4+2m</td>
+</tr>
+</table>
+<h4><font size="-1"><a href="#melee_weapons">Melee Weapons</a></font> |
+	<font size="-1"><a href="#ranged_weapons">Ranged Weapons</a></font> |
+	<a name="heavy_weapons">Heavy Weapons</a></h4>
+<table width="100%">
+<tr>
+<th align=left>Weapon</th>
+<th align=left>Skill</th><th>Acc</th><th>Md</th>
+<th>Range</th><th>Type</th><th align=left>Damage (O/G/A)</th>
+</tr>
+<tr>
+<th align=left colspan=7 bgcolor="#FFFF99"><i>Progress Level 4: Industrial Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_71" onClick="toggle_weapons_armor(this.name); chargen()">Flamethrower</th>
+<td>Hvy-<i>direct</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>6/12/30</td><td align=center>En/O</td><td>d6w/d6+3w/d8+3w</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_72" onClick="toggle_weapons_armor(this.name); chargen()">Grenade, frag.</th>
+<td>Athl-<i>throw</i></td><td align=center>+1</td><td align=center>F</td>
+<td align=center>Per STR</td><td align=center>HI/G</td><td>d4w/d4+2w/d6+2w</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_73" onClick="toggle_weapons_armor(this.name); chargen()">Machine gun, .30</th>
+<td>Hvy-<i>direct</i></td><td align=center>0</td><td align=center>A</td>
+<td align=center>60/200/600</td><td align=center>HI/O</td><td>d6w/d6+3w/d6m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_74" onClick="toggle_weapons_armor(this.name); chargen()">Rocket launcher</th>
+<td>Hvy-<i>direct</i></td><td align=center>+1</td><td align=center>F</td>
+<td align=center>30/60/150</td><td align=center>HI/G</td><td>d6w/d4+3w/d4m</td>
+</tr>
+<tr>
+<th align=left colspan=7 bgcolor="#FFFF99"><i>Progress Level 5: Information Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_75" onClick="toggle_weapons_armor(this.name); chargen()">Grenade launcher</th>
+<td>Hvy-<i>indirect</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>50/200/350</td><td align=center>As load</td><td>As load</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_76" onClick="toggle_weapons_armor(this.name); chargen()">Grenade, concus.</th>
+<td>Athl-<i>throw</i></td><td align=center>+1</td><td align=center>F</td>
+<td align=center>Per STR</td><td align=center>LI/O</td><td>d6+2s/d4w/d4+1w</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_77" onClick="toggle_weapons_armor(this.name); chargen()">Grenade, incend.</th>
+<td>Athl-<i>throw</i></td><td align=center>+1</td><td align=center>F</td>
+<td align=center>Per STR</td><td align=center>En/G</td><td>d4w/d4+2w/d4+3w</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_78" onClick="toggle_weapons_armor(this.name); chargen()">Grenade, smoke</th>
+<td>Athl-<i>throw</i></td><td align=center>+1</td><td align=center>F</td>
+<td align=center>Per STR</td><td align=center>Special</td><td>Special</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_79" onClick="toggle_weapons_armor(this.name); chargen()">Hvy machine gun</th>
+<td>Hvy-<i>direct</i></td><td align=center>0</td><td align=center>A</td>
+<td align=center>100/400/1000</td><td align=center>HI/G</td><td>d6+1w/2d4+2w/d8m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_80" onClick="toggle_weapons_armor(this.name); chargen()">SAM, handheld</th>
+<td>Hvy-<i>indirect</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>1000/2000/4000</td><td align=center>HI/G</td><td>d4w/d6w/d6+4w</td>
+</tr>
+<tr>
+<th align=left colspan=7 bgcolor="#FFFF99"><i>Progress Level 6: Fusion Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_81" onClick="toggle_weapons_armor(this.name); chargen()">Bantam launcher</th>
+<td>Hvy-<i>indirect</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>100/800/4000</td><td align=center>As load</td><td>As load</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_82" onClick="toggle_weapons_armor(this.name); chargen()">Bantam, antiair</th>
+<td>Hvy-<i>indirect</i></td><td align=center>-2</td><td align=center>F</td>
+<td align=center>As launcher</td><td align=center>HI/G</td><td>d4w/d4+2w/d4m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_83" onClick="toggle_weapons_armor(this.name); chargen()">Bantam, antiper.</th>
+<td>Hvy-<i>indirect</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>As launcher</td><td align=center>En/O</td><td>d6w/d6+2w/d8+2w</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_84" onClick="toggle_weapons_armor(this.name); chargen()">Bantam, antiveh.</th>
+<td>Hvy-<i>indirect</i></td><td align=center>-2</td><td align=center>F</td>
+<td align=center>As launcher</td><td align=center>HI/G</td><td>d4+2w/d4+4w/d4+1m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_85" onClick="toggle_weapons_armor(this.name); chargen()">Grenade, plasma</th>
+<td>Athl-<i>throw</i></td><td align=center>+1</td><td align=center>F</td>
+<td align=center>Per STR</td><td align=center>En/G</td><td>d4+2w/d6+2w/d4m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_86" onClick="toggle_weapons_armor(this.name); chargen()">Grenade, stun</th>
+<td>Athl-<i>throw</i></td><td align=center>+1</td><td align=center>F</td>
+<td align=center>Per STR</td><td align=center>En/O</td><td>d6s/d8s/d8+2s</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_87" onClick="toggle_weapons_armor(this.name); chargen()">Hvy mach gun, ch</th>
+<td>Hvy-<i>direct</i></td><td align=center>-1</td><td align=center>A</td>
+<td align=center>200/600/1200</td><td align=center>HI/G</td><td>d8w/2d6w/2d4m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_88" onClick="toggle_weapons_armor(this.name); chargen()">Rail gun</th>
+<td>Hvy-<i>direct</i></td><td align=center>-1</td><td align=center>B/A</td>
+<td align=center>150/500/1500</td><td align=center>HI/G</td><td>d6w/d6+2w/d6m</td>
+</tr>
+<tr>
+<th align=left colspan=7 bgcolor="#FFFF99"><i>Progress Level 7: Gravity Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_89" onClick="toggle_weapons_armor(this.name); chargen()">Arc gun</th>
+<td>Hvy-<i>direct</i></td><td align=center>-1</td><td align=center>F</td>
+<td align=center>20/40/100</td><td align=center>En/G</td><td>d8+1s/d8w/d6+3w</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_90" onClick="toggle_weapons_armor(this.name); chargen()">Cannon, stutter</th>
+<td>Hvy-<i>direct</i></td><td align=center>-1</td><td align=center>F</td>
+<td align=center>20/40/80</td><td align=center>LI/O</td><td>d6+2s/d8+3s/2d6+3s</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_91" onClick="toggle_weapons_armor(this.name); chargen()">Cannon, 25mm sabot</th>
+<td>Hvy-<i>direct</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>100/200/2000</td><td align=center>HI/G</td><td>d8w/d4+1m/d6+2m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_92" onClick="toggle_weapons_armor(this.name); chargen()">Grenade, pulse</th>
+<td>Athl-<i>throw</i></td><td align=center>+1</td><td align=center>F</td>
+<td align=center>Per STR</td><td align=center>En/G</td><td>d4+2s/d6+2s/d8+2s</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_93" onClick="toggle_weapons_armor(this.name); chargen()">Grenade, tracer</th>
+<td>Athl-<i>throw</i></td><td align=center>+1</td><td align=center>F</td>
+<td align=center>Per STR</td><td align=center>HI/G</td><td>d4+2w/d6+2w/d4+2m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_94" onClick="toggle_weapons_armor(this.name); chargen()">Plasma gun</th>
+<td>Hvy-<i>direct</i></td><td align=center>0</td><td align=center>F</td>
+<td align=center>40/80/200</td><td align=center>En/G</td><td>d8w/d8+3w/d12+3w</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_95" onClick="toggle_weapons_armor(this.name); chargen()">Quantum mini</th>
+<td>Hvy-<i>direct</i></td><td align=center>0</td><td align=center>F/B/A</td>
+<td align=center>100/250/800</td><td align=center>En/G</td><td>d8+1w/d8+3w/d6m</td>
+</tr>
+<tr>
+<th align=left colspan=7 bgcolor="#FFFF99"><i>Progress Level 8: Energy Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_96" onClick="toggle_weapons_armor(this.name); chargen()">Bantam, starload</th>
+<td>Hvy-<i>indirect</i></td><td align=center>-2</td><td align=center>F</td>
+<td align=center>As launcher</td><td align=center>En/A</td><td>d8+2w/d4+1m/d6+1m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_97" onClick="toggle_weapons_armor(this.name); chargen()">Cannon, maser</th>
+<td>Hvy-<i>direct</i></td><td align=center>-1</td><td align=center>F</td>
+<td align=center>80/200/600</td><td align=center>En/G</td><td>d8w/d4+1m/d6+2m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_98" onClick="toggle_weapons_armor(this.name); chargen()">Grenade, mass</th>
+<td>Athl-<i>throw</i></td><td align=center>+1</td><td align=center>F</td>
+<td align=center>Per STR</td><td align=center>En/G</td><td>d6+2s/d6+2w/d6m</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="w_99" onClick="toggle_weapons_armor(this.name); chargen()">Mass launcher</th>
+<td>Hvy-<i>indirect</i></td><td align=center>-1</td><td align=center>F</td>
+<td align=center>20/300/1000</td><td align=center>En/G</td><td>d6+1w/d6+3w/d4+1m</td>
+</tr>
+</table>
+<hr>
+<a name="armor"></a>
+<table width="100%">
+<tr>
+<th align=left><font size="+1">Armor</font></th>
+<td align=right colspan=8><input type="button" value="Custom Armor" onClick="window.open('armor.htm', 'customArmor', 'status,width=620,height=290')"></td>
+</tr>
+<tr>
+<th align=left>Armor</th>
+<th align=left>Skill</th><th>AP</th><th>Type</th>
+<th>LI / HI / En</th><th>Hide</th><th>Mass</th>
+<th>Avail</th><th>Cost</th>
+</tr>
+<tr>
+<th align=left colspan=9 bgcolor="#FFFF99"><i>Progress Level 0: Stone Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_1" onClick="toggle_weapons_armor(this.name); chargen()">Hide armor</th>
+<td>Armor Op</td><td align=center>+1</td><td align=center>O</td>
+<td align=center>d6-3 / d4-3 / d6-4</td><td align=center>-</td><td align=center>10</td>
+<td align=center>Any</td><td align=center>100</td>
+</tr>
+<tr>
+<th align=left colspan=9 bgcolor="#FFFF99"><i>Progress Level 1: Bronze/Iron Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_2" onClick="toggle_weapons_armor(this.name); chargen()">Leather armor</th>
+<td>-</td><td align=center>0</td><td align=center>O</td>
+<td align=center>d6-2 / d6-4 / d6-4</td><td align=center>+2</td><td align=center>7</td>
+<td align=center>Any</td><td align=center>350</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_3" onClick="toggle_weapons_armor(this.name); chargen()">Helm</th>
+<td>Armor Op</td><td align=center>+1</td><td align=center>O</td>
+<td align=center>+1 / 0 / 0</td><td align=center>-</td><td align=center>4</td>
+<td align=center>Com</td><td align=center>200</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_4" onClick="toggle_weapons_armor(this.name); chargen()">Shield, small</th>
+<td>Armor Op</td><td align=center>+1</td><td align=center>O</td>
+<td align=center>+1 / 0 / 0</td><td align=center>+1</td><td align=center>4</td>
+<td align=center>Any</td><td align=center>75</td>
+</tr>
+<tr>
+<th align=left colspan=9 bgcolor="#FFFF99"><i>Progress Level 2: Middle Ages</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_5" onClick="toggle_weapons_armor(this.name); chargen()">Chain mail</th>
+<td>Armor Op</td><td align=center>+1</td><td align=center>O</td>
+<td align=center>d6-1 / d6-4 / d6-4</td><td align=center>+1</td><td align=center>15</td>
+<td align=center>Com</td><td align=center>750</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_6" onClick="toggle_weapons_armor(this.name); chargen()">Plate, full</th>
+<td><i>combat</i></td><td align=center>+3</td><td align=center>O</td>
+<td align=center>d6+1 / d6-3 / d6-3</td><td align=center>-</td><td align=center>25</td>
+<td align=center>Con</td><td align=center>2000</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_7" onClick="toggle_weapons_armor(this.name); chargen()">Plate, partial</th>
+<td><i>combat</i></td><td align=center>+2</td><td align=center>O</td>
+<td align=center>d6 / d8-5 / d6-4</td><td align=center>+1</td><td align=center>20</td>
+<td align=center>Com</td><td align=center>1000</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_8" onClick="toggle_weapons_armor(this.name); chargen()">Shield, medium</th>
+<td><i>combat</i></td><td align=center>+2</td><td align=center>O</td>
+<td align=center>+2 / +1 / 0</td><td align=center>-</td><td align=center>7</td>
+<td align=center>Any</td><td align=center>300</td>
+</tr>
+<tr>
+<th align=left colspan=9 bgcolor="#FFFF99"><i>Progress Level 3: Age of Reason</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_9" onClick="toggle_weapons_armor(this.name); chargen()">Leather coat</th>
+<td>-</td><td align=center>0</td><td align=center>O</td>
+<td align=center>d6-3 / d4-3 / d4-2</td><td align=center>+3</td><td align=center>5</td>
+<td align=center>Any</td><td align=center>500</td>
+</tr>
+<tr>
+<th align=left colspan=9 bgcolor="#FFFF99"><i>Progress Level 4: Industrial Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_10" onClick="toggle_weapons_armor(this.name); chargen()">Flak jacket</th>
+<td><i>combat</i></td><td align=center>+2</td><td align=center>O</td>
+<td align=center>d6-2 / d4-1 / d6-3</td><td align=center>-</td><td align=center>15</td>
+<td align=center>Con</td><td align=center>800</td>
+</tr>
+<tr>
+<th align=left colspan=9 bgcolor="#FFFF99"><i>Progress Level 5: Information Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_11" onClick="toggle_weapons_armor(this.name); chargen()">Assault gear</th>
+<td><i>combat</i></td><td align=center>+3</td><td align=center>O</td>
+<td align=center>d6-1 / d6-1 / d6-1</td><td align=center>-</td><td align=center>10</td>
+<td align=center>Con</td><td align=center>1500</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_12" onClick="toggle_weapons_armor(this.name); chargen()">Battle vest</th>
+<td>-</td><td align=center>0</td><td align=center>O</td>
+<td align=center>d6-3 / d6-2 / d4-2</td><td align=center>+2</td><td align=center>5</td>
+<td align=center>Con</td><td align=center>600</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_13" onClick="toggle_weapons_armor(this.name); chargen()">Riot helmet</th>
+<td>Armor Op</td><td align=center>+1</td><td align=center>O</td>
+<td align=center>+1 / +1 / 0</td><td align=center>-</td><td align=center>2</td>
+<td align=center>Con</td><td align=center>300</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_14" onClick="toggle_weapons_armor(this.name); chargen()">Riot shield</th>
+<td><i>combat</i></td><td align=center>+2</td><td align=center>O</td>
+<td align=center>+1 / +1 / +1</td><td align=center>-</td><td align=center>4</td>
+<td align=center>Con</td><td align=center>500</td>
+</tr>
+<tr>
+<th align=left colspan=9 bgcolor="#FFFF99"><i>Progress Level 6: Fusion Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_15" onClick="toggle_weapons_armor(this.name); chargen()">Assault gear, hvy</th>
+<td><i>combat</i></td><td align=center>+2</td><td align=center>O</td>
+<td align=center>d6-1 / d6 / d6-1</td><td align=center>-</td><td align=center>12</td>
+<td align=center>Mil</td><td align=center>2500</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_16" onClick="toggle_weapons_armor(this.name); chargen()">Attack armor</th>
+<td><i>combat</i></td><td align=center>+3</td><td align=center>O</td>
+<td align=center>d4+1 / d6+1 / d6-1</td><td align=center>-</td><td align=center>15</td>
+<td align=center>Con</td><td align=center>3000</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_17" onClick="toggle_weapons_armor(this.name); chargen()">Attack armor, pow</th>
+<td><i>powered</i></td><td align=center>+2</td><td align=center>G</td>
+<td align=center>d6+1 / d6+2 / d6</td><td align=center>-</td><td align=center>25</td>
+<td align=center>Mil</td><td align=center>8000</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_18" onClick="toggle_weapons_armor(this.name); chargen()">Battle jacket</th>
+<td>Armor Op</td><td align=center>+1</td><td align=center>O</td>
+<td align=center>d6-1 / d4+1 / d4-1</td><td align=center>+1</td><td align=center>8</td>
+<td align=center>Con</td><td align=center>1500</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_19" onClick="toggle_weapons_armor(this.name); chargen()">CF long coat</th>
+<td>-</td><td align=center>0</td><td align=center>O</td>
+<td align=center>d4 / d4 / d6-2</td><td align=center>+3</td><td align=center>4</td>
+<td align=center>Com</td><td align=center>1000</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_20" onClick="toggle_weapons_armor(this.name); chargen()">CF short coat</th>
+<td>-</td><td align=center>0</td><td align=center>O</td>
+<td align=center>d4-1 / d4-1 / d6-3</td><td align=center>+3</td><td align=center>3</td>
+<td align=center>Com</td><td align=center>750</td>
+</tr>
+<tr>
+<th align=left colspan=9 bgcolor="#FFFF99"><i>Progress Level 7: Gravity Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_21" onClick="toggle_weapons_armor(this.name); chargen()">Body tank</th>
+<td><i>powered</i></td><td align=center>+4</td><td align=center>G</td>
+<td align=center>2d4+1 / 2d4+1 / 2d4</td><td align=center>-</td><td align=center>60</td>
+<td align=center>Res</td><td align=center>25000</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_22" onClick="toggle_weapons_armor(this.name); chargen()">Body tank, recon</th>
+<td><i>powered</i></td><td align=center>+3</td><td align=center>G</td>
+<td align=center>2d4 / 2d4 / d6+2</td><td align=center>-</td><td align=center>45</td>
+<td align=center>Mil</td><td align=center>30000</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_23" onClick="toggle_weapons_armor(this.name); chargen()">Body tank, zero-g</th>
+<td><i>powered</i></td><td align=center>+5</td><td align=center>G</td>
+<td align=center>3d4 / 3d4 / 2d4+1</td><td align=center>-</td><td align=center>80</td>
+<td align=center>Res</td><td align=center>50000</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_24" onClick="toggle_weapons_armor(this.name); chargen()">Cerametal armor</th>
+<td><i>combat</i></td><td align=center>+2</td><td align=center>O</td>
+<td align=center>d6+1 / d8+1 / d6</td><td align=center>-</td><td align=center>10</td>
+<td align=center>Mil</td><td align=center>2000</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_25" onClick="toggle_weapons_armor(this.name); chargen()">CF softsuit</th>
+<td>-</td><td align=center>0</td><td align=center>O</td>
+<td align=center>d6 / d6 / d6-1</td><td align=center>+4</td><td align=center>3</td>
+<td align=center>Con</td><td align=center>2000</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_26" onClick="toggle_weapons_armor(this.name); chargen()">Deflection harness</th>
+<td>-</td><td align=center>0</td><td align=center>O</td>
+<td align=center><i>see pages 190-1</i></td><td align=center>+3</td><td align=center>2</td>
+<td align=center>Con</td><td align=center>2500</td>
+</tr>
+<tr>
+<th align=left colspan=9 bgcolor="#FFFF99"><i>Progress Level 8: Energy Age</i></th>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_27" onClick="toggle_weapons_armor(this.name); chargen()">Ablative harness</th>
+<td>-</td><td align=center>0</td><td align=center>O</td>
+<td align=center><i>see page 191</i></td><td align=center>+3</td><td align=center>2</td>
+<td align=center>Mil</td><td align=center>5000</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_28" onClick="toggle_weapons_armor(this.name); chargen()">Body tank, over.</th>
+<td><i>powered</i></td><td align=center>+3</td><td align=center>G</td>
+<td align=center>2d6+1 / 2d6+1 / 2d6</td><td align=center>-</td><td align=center>40</td>
+<td align=center>Res</td><td align=center>70000</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_29" onClick="toggle_weapons_armor(this.name); chargen()">Displacer softsuit</th>
+<td>-</td><td align=center>0</td><td align=center>O</td>
+<td align=center><i>see page 191</i></td><td align=center>+4</td><td align=center>3</td>
+<td align=center>Res</td><td align=center>7500</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_30" onClick="toggle_weapons_armor(this.name); chargen()">Energy web</th>
+<td>-</td><td align=center>0</td><td align=center>O</td>
+<td align=center>d6-1 / d6-1 / d6+2</td><td align=center>+3</td><td align=center>2</td>
+<td align=center>Mil</td><td align=center>4000</td>
+</tr>
+<tr>
+<th align=left><input type="checkbox" name="a_31" onClick="toggle_weapons_armor(this.name); chargen()">Stealth softsuit</th>
+<td>-</td><td align=center>0</td><td align=center>O</td>
+<td align=center><i>see page 191</i></td><td align=center>+4</td><td align=center>2</td>
+<td align=center>Res</td><td align=center>10000</td>
+</tr>
+</table>
+<hr>
+<h3><a name="personal_data">Personal Data</a></h3>
+<table>
+<tr>
+<th align=left>Age</th>
+<td><input type="text" name="i_19" size="10" onChange="set_info_cookie(this.name); chargen()"></td>
+<th align=left>Height</th>
+<td><input type="text" name="i_20" size="10" onChange="set_info_cookie(this.name); chargen()"></td>
+<th align=left>Weight</th>
+<td><input type="text" name="i_21" size="10" onChange="set_info_cookie(this.name); chargen()"></td>
+</tr>
+</table>
+<table>
+<tr>
+<th align=left>Appearance</th>
+<td><input type="text" name="i_22" size="40" onChange="set_info_cookie(this.name); chargen()"></td>
+</tr>
+<tr>
+<th align=left>Allegiance</th>
+<td><input type="text" name="i_23" size="40" onChange="set_info_cookie(this.name); chargen()"></td>
+</tr>
+<tr>
+<th align=left>Social Status</th>
+<td><input type="text" name="i_24" size="40" onChange="set_info_cookie(this.name); chargen()"></td>
+</tr>
+<tr>
+<th align=left valign=top>Contacts</th>
+<td><textarea name="i_25" rows="2" cols="40" onChange="set_info_cookie(this.name); chargen()"></textarea></td>
+</tr>
+<tr>
+<th align=left valign=top>Enemies</th>
+<td><textarea name="i_26" rows="2" cols="40" onChange="set_info_cookie(this.name); chargen()"></textarea></td>
+</tr>
+<tr>
+<th align=left>Wealth</th>
+<td><input type="text" name="i_27" size="40" onChange="set_info_cookie(this.name); chargen()"></td>
+</tr>
+</table>
+<hr>
+<h3><a name="other">Other Information</a></h3>
+<table>
+<tr>
+<th align=left>Other Game Data</th>
+</tr>
+<tr>
+<td><textarea name="i_28" rows="3" cols="80" onChange="set_info_cookie(this.name); chargen()"></textarea></td>
+</tr>
+</table>
+<table>
+<tr>
+<th align=left>Equipment</th>
+</tr>
+<tr>
+<td><input type="text" name="i_29" size="27" onChange="set_info_cookie(this.name); chargen()"></td>
+<td><input type="text" name="i_30" size="27" onChange="set_info_cookie(this.name); chargen()"></td>
+<td><input type="text" name="i_31" size="27" onChange="set_info_cookie(this.name); chargen()"></td>
+</tr>
+<tr>
+<td><input type="text" name="i_32" size="27" onChange="set_info_cookie(this.name); chargen()"></td>
+<td><input type="text" name="i_33" size="27" onChange="set_info_cookie(this.name); chargen()"></td>
+<td><input type="text" name="i_34" size="27" onChange="set_info_cookie(this.name); chargen()"></td>
+</tr>
+<tr>
+<td><input type="text" name="i_35" size="27" onChange="set_info_cookie(this.name); chargen()"></td>
+<td><input type="text" name="i_36" size="27" onChange="set_info_cookie(this.name); chargen()"></td>
+<td><input type="text" name="i_37" size="27" onChange="set_info_cookie(this.name); chargen()"></td>
+</tr>
+<tr>
+<td><input type="text" name="i_38" size="27" onChange="set_info_cookie(this.name); chargen()"></td>
+<td><input type="text" name="i_39" size="27" onChange="set_info_cookie(this.name); chargen()"></td>
+<td><input type="text" name="i_40" size="27" onChange="set_info_cookie(this.name); chargen()"></td>
+</tr>
+<tr>
+<td><input type="text" name="i_41" size="27" onChange="set_info_cookie(this.name); chargen()"></td>
+<td><input type="text" name="i_42" size="27" onChange="set_info_cookie(this.name); chargen()"></td>
+<td><input type="text" name="i_43" size="27" onChange="set_info_cookie(this.name); chargen()"></td>
+</tr>
+<tr>
+<td><input type="text" name="i_44" size="27" onChange="set_info_cookie(this.name); chargen()"></td>
+<td><input type="text" name="i_45" size="27" onChange="set_info_cookie(this.name); chargen()"></td>
+<td><input type="text" name="i_46" size="27" onChange="set_info_cookie(this.name); chargen()"></td>
+</tr>
+</table>
+<hr>
+<table>
+<tr>
+<th align=left>Notes</th>
+</tr>
+<tr>
+<td><textarea name="i_47" rows="5" cols="80" onChange="set_info_cookie(this.name); chargen()"></textarea></td>
+</tr>
+</table>
+<hr>
+<a name="cyber"></a>
+<table>
+<tr>
+<th align=left bgcolor="#999999" colspan=2><font color="cyan" size="+1">Cybernetic Gear</font></th>
+<td align=right colspan=5><input type="button" value="Custom Cyber Gear" onClick="window.open('cyber.htm', 'customCyber', 'status,width=420,height=390')"></td>
+</tr>
+<tr>
+<th colspan=2><br></th>
+<th><br></th><th><br></th>
+<th colspan=3>Cost per Quality</th>
+</tr>
+<tr>
+<th colspan=2><br></th>
+<th>Mass</th><th>Size</th>
+<th>O</th><th>G</th><th>A</th>
+</tr>
+<tr>
+<th align=left colspan=7 bgcolor="#FFFF99"><i>Progress Level 6: Fusion Age</i></th>
+</tr>
+<tr>
+<th align=left colspan=2><input type="checkbox" name="c_0" onClick="toggle_cyber_gear(this.name); chargen()">BattleKlaw*</th>
+<td align=center>1</td><td align=center>2</td>
+<td align=center><input type="radio" name="c_0_r" onClick="set_cyber_gear_cost(this.name); chargen()" checked>300</td><td align=center><input type="radio" name="c_0_r" onClick="set_cyber_gear_cost(this.name); chargen()">600</td><td align=center><input type="radio" name="c_0_r" onClick="set_cyber_gear_cost(this.name); chargen()">900</td>
+</tr>
+<tr>
+<th align=left colspan=2><input type="checkbox" name="c_1" onClick="toggle_cyber_gear(this.name); chargen()">BioArt**</th>
+<td align=center>-</td><td align=center>-</td>
+<td align=center><input type="radio" name="c_1_r" onClick="set_cyber_gear_cost(this.name); chargen()" checked>50</td><td align=center><input type="radio" name="c_1_r" onClick="set_cyber_gear_cost(this.name); chargen()">100</td><td align=center><input type="radio" name="c_1_r" onClick="set_cyber_gear_cost(this.name); chargen()">200</td>
+</tr>
+<tr>
+<th align=left colspan=2><input type="checkbox" name="c_2" onClick="toggle_cyber_gear(this.name); chargen()">BioWatch**</th>
+<td align=center>-</td><td align=center>-</td>
+<td align=center><input type="radio" name="c_2_r" onClick="set_cyber_gear_cost(this.name); chargen()" checked>50</td><td align=center><input type="radio" name="c_2_r" onClick="set_cyber_gear_cost(this.name); chargen()">100</td><td align=center><input type="radio" name="c_2_r" onClick="set_cyber_gear_cost(this.name); chargen()">300</td>
+</tr>
+<tr>
+<th align=left colspan=7>Body Plating:</th>
+</tr>
+<tr>
+<th width=15><br></th>
+<th align=left><input type="checkbox" name="c_3" onClick="toggle_cyber_gear(this.name); chargen()">Ordinary</th>
+<td align=center>20</td><td align=center>2</td>
+<td align=center>1500</td><td align=center>-</td><td align=center>-</td>
+</tr>
+<tr>
+<th width=15><br></th>
+<th align=left><input type="checkbox" name="c_4" onClick="toggle_cyber_gear(this.name); chargen()">Good</th>
+<td align=center>40</td><td align=center>3</td>
+<td align=center>-</td><td align=center>3000</td><td align=center>-</td>
+</tr>
+<tr>
+<th width=15><br></th>
+<th align=left><input type="checkbox" name="c_5" onClick="toggle_cyber_gear(this.name); chargen()">Amazing</th>
+<td align=center>60</td><td align=center>4</td>
+<td align=center>-</td><td align=center>-</td><td align=center>4500</td>
+</tr>
+<tr>
+<th align=left colspan=2><input type="checkbox" name="c_6" onClick="toggle_cyber_gear(this.name); chargen()">Cyberlimb*</th>
+<td align=center>10</td><td align=center>2</td>
+<td align=center><input type="radio" name="c_6_r" onClick="set_cyber_gear_cost(this.name); chargen()" checked>1000</td><td align=center><input type="radio" name="c_6_r" onClick="set_cyber_gear_cost(this.name); chargen()">2000</td><td align=center><input type="radio" name="c_6_r" onClick="set_cyber_gear_cost(this.name); chargen()">3000</td>
+</tr>
+<tr>
+<th align=left colspan=2><input type="checkbox" name="c_7" onClick="toggle_cyber_gear(this.name); chargen()">Cyberoptics*</th>
+<td align=center>-</td><td align=center>1</td>
+<td align=center><input type="radio" name="c_7_r" onClick="set_cyber_gear_cost(this.name); chargen()" checked>500</td><td align=center><input type="radio" name="c_7_r" onClick="set_cyber_gear_cost(this.name); chargen()">1000</td><td align=center><input type="radio" name="c_7_r" onClick="set_cyber_gear_cost(this.name); chargen()">2000</td>
+</tr>
+<tr>
+<th align=left colspan=2><input type="checkbox" name="c_8" onClick="toggle_cyber_gear(this.name); chargen()">Fast chip*</th>
+<td align=center>-</td><td align=center>2</td>
+<td align=center><input type="radio" name="c_8_r" onClick="set_cyber_gear_cost(this.name); chargen()" checked>1000</td><td align=center><input type="radio" name="c_8_r" onClick="set_cyber_gear_cost(this.name); chargen()">1500</td><td align=center><input type="radio" name="c_8_r" onClick="set_cyber_gear_cost(this.name); chargen()">2000</td>
+</tr>
+<tr>
+<th align=left colspan=2><input type="checkbox" name="c_9" onClick="toggle_cyber_gear(this.name); chargen()">MusclePlus*</th>
+<td align=center>2</td><td align=center>2</td>
+<td align=center><input type="radio" name="c_9_r" onClick="set_cyber_gear_cost(this.name); chargen()" checked>1000</td><td align=center><input type="radio" name="c_9_r" onClick="set_cyber_gear_cost(this.name); chargen()">2000</td><td align=center><input type="radio" name="c_9_r" onClick="set_cyber_gear_cost(this.name); chargen()">3000</td>
+</tr>
+<tr>
+<th align=left colspan=2><input type="checkbox" name="c_10" onClick="toggle_cyber_gear(this.name); chargen()">Nanocomputer</th>
+<td align=center>-</td><td align=center>1</td>
+<td align=center><input type="radio" name="c_10_r" onClick="set_cyber_gear_cost(this.name); chargen()" checked>2000</td><td align=center><input type="radio" name="c_10_r" onClick="set_cyber_gear_cost(this.name); chargen()">3000</td><td align=center><input type="radio" name="c_10_r" onClick="set_cyber_gear_cost(this.name); chargen()">4000</td>
+</tr>
+<tr>
+<th align=left colspan=2><input type="checkbox" name="c_11" onClick="toggle_cyber_gear(this.name); chargen()">NIJack*</th>
+<td align=center>-</td><td align=center>1</td>
+<td align=center>500</td><td align=center>-</td><td align=center>-</td>
+</tr>
+<tr>
+<th align=left colspan=2><input type="checkbox" name="c_12" onClick="toggle_cyber_gear(this.name); chargen()">Optic screen*</th>
+<td align=center>-</td><td align=center>-</td>
+<td align=center>250</td><td align=center>-</td><td align=center>-</td>
+</tr>
+<tr>
+<th align=left colspan=2><input type="checkbox" name="c_13" onClick="toggle_cyber_gear(this.name); chargen()">Self-repair unit*</th>
+<td align=center>2</td><td align=center>2</td>
+<td align=center><input type="radio" name="c_13_r" onClick="set_cyber_gear_cost(this.name); chargen()" checked>1000</td><td align=center><input type="radio" name="c_13_r" onClick="set_cyber_gear_cost(this.name); chargen()">2000</td><td align=center><input type="radio" name="c_13_r" onClick="set_cyber_gear_cost(this.name); chargen()">3000</td>
+</tr>
+<tr>
+<th align=left colspan=2><input type="checkbox" name="c_14" onClick="toggle_cyber_gear(this.name); chargen()">Subdermal comm</th>
+<td align=center>-</td><td align=center>1</td>
+<td align=center>-</td><td align=center>500</td><td align=center>-</td>
+</tr>
+<tr>
+<th align=left colspan=7>Subdermal weapon mount:</th>
+</tr>
+<tr>
+<th width=15><br></th>
+<th align=left><input type="checkbox" name="c_15" onClick="toggle_cyber_gear(this.name); chargen()">Ordinary*</th>
+<td align=center>2</td><td align=center>2</td>
+<td align=center>250</td><td align=center>-</td><td align=center>-</td>
+</tr>
+<tr>
+<th width=15><br></th>
+<th align=left><input type="checkbox" name="c_16" onClick="toggle_cyber_gear(this.name); chargen()">Good*</th>
+<td align=center>2</td><td align=center>3</td>
+<td align=center>-</td><td align=center>500</td><td align=center>-</td>
+</tr>
+<tr>
+<th width=15><br></th>
+<th align=left><input type="checkbox" name="c_17" onClick="toggle_cyber_gear(this.name); chargen()">Amazing*</th>
+<td align=center>2</td><td align=center>4</td>
+<td align=center>-</td><td align=center>-</td><td align=center>750</td>
+</tr>
+<tr>
+<th align=left colspan=7 bgcolor="#FFFF99"><i>Progress Level 7: Gravity Age</i></th>
+</tr>
+<tr>
+<th align=left colspan=2><input type="checkbox" name="c_18" onClick="toggle_cyber_gear(this.name); chargen()">CF skinweave**</th>
+<td align=center>-</td><td align=center>1</td>
+<td align=center><input type="radio" name="c_18_r" onClick="set_cyber_gear_cost(this.name); chargen()" checked>1000</td><td align=center><input type="radio" name="c_18_r" onClick="set_cyber_gear_cost(this.name); chargen()">2000</td><td align=center><input type="radio" name="c_18_r" onClick="set_cyber_gear_cost(this.name); chargen()">3000</td>
+</tr>
+<tr>
+<th align=left colspan=2><input type="checkbox" name="c_19" onClick="toggle_cyber_gear(this.name); chargen()">Data slot, passive**</th>
+<td align=center>1</td><td align=center>1</td>
+<td align=center><input type="radio" name="c_19_r" onClick="set_cyber_gear_cost(this.name); chargen()" checked>500</td><td align=center><input type="radio" name="c_19_r" onClick="set_cyber_gear_cost(this.name); chargen()">700</td><td align=center><input type="radio" name="c_19_r" onClick="set_cyber_gear_cost(this.name); chargen()">900</td>
+</tr>
+<tr>
+<th align=left colspan=2><input type="checkbox" name="c_20" onClick="toggle_cyber_gear(this.name); chargen()">ER slot*</th>
+<td align=center>1</td><td align=center>1</td>
+<td align=center><input type="radio" name="c_20_r" onClick="set_cyber_gear_cost(this.name); chargen()" checked>500</td><td align=center><input type="radio" name="c_20_r" onClick="set_cyber_gear_cost(this.name); chargen()">1000</td><td align=center><input type="radio" name="c_20_r" onClick="set_cyber_gear_cost(this.name); chargen()">1500</td>
+</tr>
+<tr>
+<th align=left colspan=2><input type="checkbox" name="c_21" onClick="toggle_cyber_gear(this.name); chargen()">ER slot, passive**</th>
+<td align=center>1</td><td align=center>1</td>
+<td align=center><input type="radio" name="c_21_r" onClick="set_cyber_gear_cost(this.name); chargen()" checked>500</td><td align=center><input type="radio" name="c_21_r" onClick="set_cyber_gear_cost(this.name); chargen()">1000</td><td align=center><input type="radio" name="c_21_r" onClick="set_cyber_gear_cost(this.name); chargen()">1500</td>
+</tr>
+<tr>
+<th align=left colspan=2><input type="checkbox" name="c_22" onClick="toggle_cyber_gear(this.name); chargen()">Exoskeleton*</th>
+<td align=center>30</td><td align=center>3</td>
+<td align=center><input type="radio" name="c_22_r" onClick="set_cyber_gear_cost(this.name); chargen()" checked>2000</td><td align=center><input type="radio" name="c_22_r" onClick="set_cyber_gear_cost(this.name); chargen()">3000</td><td align=center><input type="radio" name="c_22_r" onClick="set_cyber_gear_cost(this.name); chargen()">4000</td>
+</tr>
+<tr>
+<th align=left colspan=2><input type="checkbox" name="c_23" onClick="toggle_cyber_gear(this.name); chargen()">Neural 3D, ext.*</th>
+<td align=center>1</td><td align=center>1</td>
+<td align=center><input type="radio" name="c_23_r" onClick="set_cyber_gear_cost(this.name); chargen()" checked>500</td><td align=center><input type="radio" name="c_23_r" onClick="set_cyber_gear_cost(this.name); chargen()">750</td><td align=center><input type="radio" name="c_23_r" onClick="set_cyber_gear_cost(this.name); chargen()">1000</td>
+</tr>
+<tr>
+<th align=left colspan=2><input type="checkbox" name="c_24" onClick="toggle_cyber_gear(this.name); chargen()">Reflex*</th>
+<td align=center>-</td><td align=center>2</td>
+<td align=center>-</td><td align=center>2000</td><td align=center>-</td>
+</tr>
+<tr>
+<th align=left colspan=2><input type="checkbox" name="c_25" onClick="toggle_cyber_gear(this.name); chargen()">Subdermal NIJack*</th>
+<td align=center>-</td><td align=center>1</td>
+<td align=center>-</td><td align=center>700</td><td align=center>-</td>
+</tr>
+<tr>
+<th align=left colspan=2><input type="checkbox" name="c_26" onClick="toggle_cyber_gear(this.name); chargen()">Wireless NIJack*</th>
+<td align=center>-</td><td align=center>1</td>
+<td align=center>-</td><td align=center>1000</td><td align=center>-</td>
+</tr>
+</table>
+<table>
+<tr>
+<td>*</td><td>Nanocomputer required to use this device.</td>
+</tr>
+<tr>
+<td>**</td><td>Can be installed at no cost in skill points.</td>
+</tr>
+</table>
+</form>
+</body>
+</html>

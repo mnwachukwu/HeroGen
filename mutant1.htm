@@ -1,0 +1,175 @@
+<!--
+////////////////////////////////////////////////////////////////
+//                                                            //
+// HeroGen (an ALTERNITY Character Generator)                 //
+// Copyright (c) 1999-2003 Mike Heffner. All rights reserved. //
+//                                                            //
+// ALTERNITY is a registered trademark owned by TSR, Inc.     //
+// Copyright (c) 1998 TSR, Inc. All rights reserved.          //
+//                                                            //
+////////////////////////////////////////////////////////////////
+-->
+
+<html>
+<body bgcolor="white">
+<form>
+<h4>Advantageous Mutations</h4>
+<table border>
+<tr>
+<th width=50>d20</th>
+<th align=left>Ordinary</th>
+<th align=left>Good</th>
+<th align=left>Amazing</th>
+</tr>
+<tr>
+<td align=center>1</td>
+<td>Adaptation, Environment:<br>
+    <input type="checkbox" name="m_0"  onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Hot Climate<br>
+	<input type="checkbox" name="m_1"  onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Cold Climate<br>
+	<input type="checkbox" name="m_2"  onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Arid Climate<br>
+	<input type="checkbox" name="m_3"  onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Thin Atmosphere<br>
+	<input type="checkbox" name="m_4"  onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Thick Atmosphere</td>
+<td><input type="checkbox" name="m_24" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Acid Touch</td>
+<td><input type="checkbox" name="m_44" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Chameleon Flesh</td>
+</tr>
+<tr>
+<td align=center>2</td>
+<td><input type="checkbox" name="m_5"  onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Adaptation, Gravity:<br>
+	<input type="radio" name="m_5_0_1" value="0" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()">Light<br>
+	<input type="radio" name="m_5_0_1" value="1" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()">Heavy</td>
+<td><input type="checkbox" name="m_25" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Dermal Armor</td>
+<td><input type="checkbox" name="m_45" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Dermal Plating</td>
+</tr>
+<tr>
+<td align=center>3</td>
+<td><input type="checkbox" name="m_6"  onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Adrenal Control</td>
+<td><input type="checkbox" name="m_26" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Electric Aura</td>
+<td><input type="checkbox" name="m_46" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Energy Absorption</td>
+</tr>
+<tr>
+<td align=center>4</td>
+<td><input type="checkbox" name="m_7"  onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Biorhythm Control</td>
+<td><input type="checkbox" name="m_27" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Enhanced CON</td>
+<td><input type="checkbox" name="m_47" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Energy Reflection</td>
+</tr>
+<tr>
+<td align=center>5</td>
+<td><input type="checkbox" name="m_8"  onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Dermal Reinforcement</td>
+<td><input type="checkbox" name="m_28" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Enhanced DEX</td>
+<td><input type="checkbox" name="m_48" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Flight</td>
+</tr>
+<tr>
+<td align=center>6</td>
+<td><input type="checkbox" name="m_9"  onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Improved CON</td>
+<td><input type="checkbox" name="m_29" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Enhanced Durability</td>
+<td><input type="checkbox" name="m_49" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Hyper CON</td>
+</tr>
+<tr>
+<td align=center>7</td>
+<td><input type="checkbox" name="m_10" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Improved DEX</td>
+<td><input type="checkbox" name="m_30" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Enhanced Healing</td>
+<td><input type="checkbox" name="m_50" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Hyper DEX</td>
+</tr>
+<tr>
+<td align=center>8</td>
+<td><input type="checkbox" name="m_11" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Improved Durability</td>
+<td><input type="checkbox" name="m_31" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Enhanced Immunity</td>
+<td><input type="checkbox" name="m_51" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Hyper Durability</td>
+</tr>
+<tr>
+<td align=center>9</td>
+<td><input type="checkbox" name="m_12" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Improved Healing</td>
+<td><input type="checkbox" name="m_32" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Enhanced INT</td>
+<td><input type="checkbox" name="m_52" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Hyper Healing</td>
+</tr>
+<tr>
+<td align=center>10</td>
+<td><input type="checkbox" name="m_13" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Improved Immunity</td>
+<td><input type="checkbox" name="m_33" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Enhanced PER</td>
+<td><input type="checkbox" name="m_53" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Hyper Immunity</td>
+</tr>
+<tr>
+<td align=center>11</td>
+<td><input type="checkbox" name="m_14" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Improved INT</td>
+<td><input type="checkbox" name="m_34" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Enhanced Reflexes</td>
+<td><input type="checkbox" name="m_54" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Hyper INT</td>
+</tr>
+<tr>
+<td align=center>12</td>
+<td><input type="checkbox" name="m_15" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Improved PER</td>
+<td><input type="checkbox" name="m_35" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Enhanced Senses</td>
+<td><input type="checkbox" name="m_55" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Hyper Metabolism</td>
+</tr>
+<tr>
+<td align=center>13</td>
+<td><input type="checkbox" name="m_16" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Improved Reflexes</td>
+<td><input type="checkbox" name="m_36" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Enhanced STR</td>
+<td><input type="checkbox" name="m_56" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Hyper PER</td>
+</tr>
+<tr>
+<td align=center>14</td>
+<td><input type="checkbox" name="m_17" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Improved Senses</td>
+<td><input type="checkbox" name="m_37" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Enhanced WIL</td>
+<td><input type="checkbox" name="m_57" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Hyper Reflexes</td>
+</tr>
+<tr>
+<td align=center>15</td>
+<td><input type="checkbox" name="m_18" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Improved STR</td>
+<td><input type="checkbox" name="m_38" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Increased Metabolism</td>
+<td><input type="checkbox" name="m_58" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Hyper Senses</td>
+</tr>
+<tr>
+<td align=center>16</td>
+<td><input type="checkbox" name="m_19" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Improved WIL</td>
+<td><input type="checkbox" name="m_39" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Natural Attack:<br>
+	<input type="radio" name="m_39_0_1" value="0" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()" checked>Not Retractable<br>
+	<input type="radio" name="m_39_0_1" value="1" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()">Retractable</td>
+<td><input type="checkbox" name="m_59" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Hyper STR</td>
+</tr>
+<tr>
+<td align=center>17</td>
+<td><input type="checkbox" name="m_20" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Night Vision</td>
+<td><input type="checkbox" name="m_40" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Psionic Power</td>
+<td><input type="checkbox" name="m_60" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Hyper WIL</td>
+</tr>
+<tr>
+<td align=center>18</td>
+<td><input type="checkbox" name="m_21" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Psi Sensitivity</td>
+<td><input type="checkbox" name="m_41" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Radiation Tolerance</td>
+<td><input type="checkbox" name="m_61" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Improved Natural Attack:<br>
+	<input type="radio" name="m_61_0_1" value="0" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()" checked>Not Retractable<br>
+	<input type="radio" name="m_61_0_1" value="1" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()">Retractable</td>
+</tr>
+<tr>
+<td align=center>19</td>
+<td><input type="checkbox" name="m_22" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Toxin Tolerance</td>
+<td><input type="checkbox" name="m_42" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Redundant Vital Organs</td>
+<td><input type="checkbox" name="m_62" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Poison Attack:
+    <table border>
+	<tr>
+	<td>Poison Type:</td><td>Delivery System:</td>
+	</tr>
+	<td><input type="radio" name="m_62_0_2" value="0" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()" checked>Hemotoxin</td>
+	<td><input type="radio" name="m_62_1_2" value="0" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()" checked>Insinuative</td>
+	</tr>
+	</tr>
+	<td><input type="radio" name="m_62_0_2" value="1" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()">Neurotoxin</td>
+	<td><input type="radio" name="m_62_1_2" value="1" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()">Insinuative or inhaled</td>
+	</tr>
+	</tr>
+	<td><input type="radio" name="m_62_0_2" value="2" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()">Irritant</td>
+	<td><input type="radio" name="m_62_1_2" value="2" onClick="if (parent.toggle_radio_button(this.name)) parent.window.opener.chargen()">Inhaled</td>
+	</tr>
+	</table>
+</td>
+</tr>
+<tr>
+<td align=center>20</td>
+<td><input type="checkbox" name="m_23" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Vascular Control</td>
+<td><input type="checkbox" name="m_43" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Thermal Vision</td>
+<td><input type="checkbox" name="m_63" onClick="parent.toggle_mutation(this.name); parent.window.opener.chargen()">Psi Resistance</td>
+</tr>
+</table>
+</form>
+</body>
+</html>
